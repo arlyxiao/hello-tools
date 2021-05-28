@@ -1,5 +1,8 @@
 
-import * as React from 'react';
+import * as React from "react";
+
+import Basic from "./pages/Basic";
+
 
 interface Props {
    name:
@@ -11,9 +14,7 @@ class App extends React.Component<Props> {
     const { name } = this.props;
     return (
       <>
-        <h1>
-          Hello {name}
-        </h1>
+        <Basic />
       </>
     );
   }
