@@ -30,16 +30,24 @@ const Crypto = () => {
 
   return (
     <>
-      <div className="digest panel">
+      <div className="crypto panel">
         <textarea name="digest"
                   onChange={ (event: React.ChangeEvent<HTMLTextAreaElement>) => handleChange(event) }></textarea>
 
-        <div className="action-list">
-          <button type="button" onClick={() => convertMd5()}>Md5</button>
-          <button type="button" onClick={() => convertSha256()}>Sha256</button>
-          <button type="button" onClick={() => encodeBase64()}>Encode Base64</button>
-          <button type="button" onClick={() => decodeBase64()}>Decode Base64</button>
-        </div>
+        <ul className="action-list">
+          <li>
+            <button type="button" onClick={() => convertMd5()}>Md5</button>
+          </li>
+          <li>
+            <button type="button" onClick={() => convertSha256()}>Sha256</button>
+          </li>
+          <li>
+            <button type="button" onClick={() => encodeBase64()}>Encode Base64</button>
+          </li>
+          <li>
+            <button type="button" onClick={() => decodeBase64()}>Decode Base64</button>
+          </li>
+        </ul>
 
         <textarea name="result" readOnly defaultValue={resultValue}></textarea>
       </div>

@@ -1,12 +1,15 @@
 import * as React from "react";
 
+import MainLayout from "../layouts/MainLayout";
 import Crypto from "../components/Crypto";
 
 
 const Basic = function() {
   return (
     <>
-      <Crypto />
+      <MainLayout>
+        <Crypto />
+      </MainLayout>
     </>
   );
 };
