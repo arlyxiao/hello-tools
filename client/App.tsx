@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import Basic from "./pages/Basic";
-
+import Chrome from "./pages/Chrome";
 
 const App = () => {
 
@@ -18,6 +18,7 @@ const App = () => {
     <Router>
       <Switch>
         <Route path={`/pages/basic`} component={Basic} exact />
+        <Route path={`/pages/chrome`} component={Chrome} />
       </Switch>
     </Router>
   )

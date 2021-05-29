@@ -48,3 +48,25 @@ header {
     }
   }
 }
+
+.puppeteer.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input {
+    width: 380px;
+    height: 35px;
+  }
+
+  button {
+    border: 0;
+    padding: 12px 15px;
+    margin: 20px auto;
+  }
+
+  iframe {
+    width: 800px;
+    height: 800px;
+  }
+}
