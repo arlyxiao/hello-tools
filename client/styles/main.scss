@@ -1,3 +1,4 @@
+@import "basic.scss";
 @import "widget.scss";
 
 .main-container {
@@ -59,6 +60,11 @@ header {
   .input-wrapper {
     width: 380px;
     margin: 0 0 20px 0;
+  }
+
+  button {
+    min-width: 110px;
+    min-height: 40px;
   }
 
   iframe {
