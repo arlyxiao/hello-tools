@@ -2,14 +2,14 @@ import * as React from "react";
 
 
 import MainLayout from "../layouts/MainLayout";
-import Puppeteer from "../components/Puppeteer";
+import HtmlToPdf from "../components/HtmlToPdf";
 
 
 const Chrome = function() {
   return (
     <>
       <MainLayout>
-        <Puppeteer />
+        <HtmlToPdf />
       </MainLayout>
     </>
   );

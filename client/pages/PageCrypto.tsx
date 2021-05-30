@@ -4,7 +4,7 @@ import MainLayout from "../layouts/MainLayout";
 import Crypto from "../components/Crypto";
 
 
-const Basic = function() {
+const PageCrypto = function() {
   return (
     <>
       <MainLayout>
@@ -15,4 +15,4 @@ const Basic = function() {
 };
 
 
-export default Basic;
+export default PageCrypto;

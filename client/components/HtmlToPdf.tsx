@@ -1,7 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 
 
-const Puppeteer = () => {
+const HtmlToPdf = () => {
   const [inputValue, setInputValue] = useState("https://baidu.com");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -53,4 +53,4 @@ const Puppeteer = () => {
 }
 
 
-export default Puppeteer;
+export default HtmlToPdf;
