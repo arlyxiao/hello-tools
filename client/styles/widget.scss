@@ -1,0 +1,34 @@
+button {
+  color: #fff;
+  background: #763456;
+  border: 0;
+  border-radius: 5px;
+  padding: 12px 15px;
+  cursor: pointer;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 0;
+  border-bottom: 1px solid #dedede;
+  padding: 0;
+  margin: 0 auto;
+
+  input {
+    font-size: 14px;
+    border: 0;
+    border-radius: 5px;
+    padding: 0 10px 0 10px;
+    width: 100%;
+    height: 100%;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

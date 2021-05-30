@@ -1,3 +1,5 @@
+@import "widget.scss";
+
 .main-container {
   display: flex;
   flex-direction: column;
@@ -54,19 +56,15 @@ header {
   flex-direction: column;
   align-items: center;
 
-  input {
+  .input-wrapper {
     width: 380px;
-    height: 35px;
-  }
-
-  button {
-    border: 0;
-    padding: 12px 15px;
-    margin: 20px auto;
+    margin: 0 0 20px 0;
   }
 
   iframe {
     width: 800px;
-    height: 800px;
+    height: 500px;
+    margin: 20px 0 0 0;
+    border: 1px solid #dedede;
   }
 }
