@@ -5,8 +5,8 @@ import {
   Route
 } from "react-router-dom";
 
-import Chrome from "./pages/Chrome";
 import PageCrypto from "./pages/PageCrypto";
+import PageHtmlConverter from "./pages/PageHtmlConverter";
 
 const App = () => {
 
@@ -18,7 +18,7 @@ const App = () => {
     <Router>
       <Switch>
         <Route path={`/pages/crypto`} component={PageCrypto} exact />
-        <Route path={`/pages/chrome`} component={Chrome} />
+        <Route path={`/pages/html-converter`} component={PageHtmlConverter} />
       </Switch>
     </Router>
   )

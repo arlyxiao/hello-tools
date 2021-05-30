@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 
-const HtmlToPdf = () => {
-  const [inputValue, setInputValue] = useState("https://baidu.com");
+const HtmlConverter = () => {
+  const [inputValue, setInputValue] = useState("https://douban.com");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -15,9 +15,9 @@ const HtmlToPdf = () => {
       return;
     }
 
-    const url = `http://localhost:4500/html-to-pdf?url=${inputValue}`;
+    const url = `${process.env.BASE_URL}/html-to-pdf?url=${inputValue}`;
 
-    setResult("http://localhost:4500/static/loading.html");
+    setResult(`${process.env.BASE_URL}/static/loading.html`);
     setIsLoading(true);
     fetch(url)
       .then( res => res.blob() )
@@ -30,7 +30,7 @@ const HtmlToPdf = () => {
 
   return (
     <>
-      <div className="puppeteer panel">
+      <div className="chrome panel">
         <div className="input-wrapper">
           <input type="text"
                 name=""
@@ -53,4 +53,4 @@ const HtmlToPdf = () => {
 }
 
 
-export default HtmlToPdf;
+export default HtmlConverter;

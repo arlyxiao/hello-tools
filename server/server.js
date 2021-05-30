@@ -23,7 +23,9 @@ app.use(session({
 app.get("/html-to-pdf", async (req, res) => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto(req.query.url, {waitUntil: 'networkidle2'});
+  await page.goto(req.query.url, {
+    waitUntil: 'networkidle2'
+  });
   const dataBuffer = await page.pdf({
     path: `./temp/${req.session.id}_${Date.now()}.pdf`,
     format: 'letter'
@@ -36,6 +38,7 @@ app.get("/html-to-pdf", async (req, res) => {
   res.end(dataBuffer);
 
   await browser.close();
-})
+});
+
 
 app.listen(4500);

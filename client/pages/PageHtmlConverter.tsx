@@ -2,18 +2,18 @@ import * as React from "react";
 
 
 import MainLayout from "../layouts/MainLayout";
-import HtmlToPdf from "../components/HtmlToPdf";
+import HtmlConverter from "../components/HtmlConverter";
 
 
-const Chrome = function() {
+const PageHtmlConverter = function() {
   return (
     <>
       <MainLayout>
-        <HtmlToPdf />
+        <HtmlConverter />
       </MainLayout>
     </>
   );
 };
 
 
-export default Chrome;
+export default PageHtmlConverter;
