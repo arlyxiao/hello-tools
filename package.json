@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "rm dist/bundle.js",
     "start": "parcel client/index.html",
-    "build-prod": "parcel build client/index.html",
+    "prod": "parcel build client/index.html",
     "test": "jest"
   },
   "dependencies": {
