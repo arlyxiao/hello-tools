@@ -8,9 +8,15 @@ Make life more automatical.
 npm install
 ```
 
-### Start server
+### Start client
 
 ```sh
 cp .env.example .env
 npm start
+```
+
+### Start server
+```
+cd server
+node server.js
 ```
