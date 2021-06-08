@@ -23,19 +23,40 @@ services:
     environment:
       POSTGRES_PASSWORD: 'password'
 
+  webpack:
+    build:
+      context: ./docker/webapp
+      dockerfile: Dockerfile
+    command: ./bin/webpack-dev-server
+    volumes:
+      - ../webapp:/webapp
+      - bundler_gems:/usr/local/bundle
+    ports:
+      - '3035:3035'
+    environment:
+      NODE_ENV: development
+      RAILS_ENV: development
+      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+
   webapp:
     build:
       context: ./docker/webapp
       dockerfile: Dockerfile
-    # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3008 -b '0.0.0.0'"  
+    command: >
+      bash -c "rm -f tmp/pids/server.pid &&
+               bundle exec rails s -p 3008 -b '0.0.0.0'"
     # command: bash -c "bundle exec puma -e production -C config/puma.rb"
-    command: bash -c "bundle exec puma -C config/puma.rb"
+    # command: bash -c "bundle exec puma -C config/puma.rb"
+    environment:
+      WEBPACKER_DEV_SERVER_HOST: webpack
+
     volumes:
       - ../webapp:/webapp
       - bundler_gems:/usr/local/bundle
     ports:
       - "3008:3008"
     depends_on:
+      - webpack
       - db
 
 volumes:

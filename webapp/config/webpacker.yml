@@ -33,6 +33,7 @@ default: &default
     - .woff2
 
   extensions:
+    - .jsx
     - .mjs
     - .js
     - .sass
@@ -56,8 +57,8 @@ development:
     https: false
     host: localhost
     port: 3035
-    public: localhost:3035
-    hmr: false
+    public: 0.0.0.0:3035
+    hmr: true
     # Inline should be set to true if using HMR
     inline: true
     overlay: true
