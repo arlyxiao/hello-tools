@@ -10,7 +10,7 @@ module Github
         issues = GithubServices::FetchIssues.new(page: page).call
 
         if issues.blank?
-          Github::SyncIssuesJob.set(wait: 2.hours).perform_later(page: 1)
+          # Github::SyncIssuesJob.set(wait: 2.hours).perform_later(page: 1)
           return
         end
 
@@ -19,10 +19,12 @@ module Github
           issue.save
         end
 
+        p "page #{page} synced done"
+
         page += 1
       end
 
-      Github::SyncIssuesJob.set(wait: 2.hours).perform_later(page: 1)
+      # Github::SyncIssuesJob.set(wait: 2.hours).perform_later(page: 1)
     end
   end
 

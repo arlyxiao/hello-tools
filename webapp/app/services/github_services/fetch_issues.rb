@@ -25,7 +25,10 @@ module GithubServices
         return nil unless res.is_a?(Net::HTTPSuccess)
 
         begin
-          JSON.parse(res.body)
+          parsed = JSON.parse(res.body)
+          if parsed.length == 0
+            raise 'No issues'
+          end
         rescue JSON::ParserError => e
           Rails.logger.warn "Fetching issues error: #{e}"
           return nil
