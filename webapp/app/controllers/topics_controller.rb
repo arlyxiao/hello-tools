@@ -1,12 +1,9 @@
 class TopicsController < ApplicationController
-  def index
-    # Octokit.configure do |c|
-    #   c.api_endpoint = "https://api.github.com"
-    # end
-    client = Octokit::Client.new(:access_token => ENV['GITHUB_TOKEN'])
-    # client.connection_options[:ssl] = { :verify => false }
+  include GithubIssues
 
-    issues = client.issues ENV['GITHUB_REPO']
-    render json: issues
+  def index
+    @issues = fetch_github_issues
+
+    render json: @issues
   end
 end

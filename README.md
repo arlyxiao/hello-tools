@@ -47,6 +47,7 @@ docker-compose run webapp bundle install
 docker-compose run webapp rails webpacker:install
 docker-compose run webapp rails assets:precompile
 docker-compose run webapp rake db:create (Optional)
+docker-compose run webapp rake db:migrate
 ```
 
 ### Start docker

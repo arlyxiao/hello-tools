@@ -17,6 +17,8 @@ services:
 
   db:
     image: postgres
+    ports:
+      - '5432:5432'
     command: ["postgres", "-c", "fsync=false", "-c", "full_page_writes=off"]
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
