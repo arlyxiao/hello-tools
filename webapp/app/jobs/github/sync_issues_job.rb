@@ -7,24 +7,41 @@ module Github
       page ||= 1
 
       while true
-        issues = GithubServices::FetchIssues.new(page: page).call
+        data = GithubIssue.where(page: page)
 
-        if issues.blank?
-          # Github::SyncIssuesJob.set(wait: 2.hours).perform_later(page: 1)
-          return
-        end
+        if data.exists?
+          p 'Before update new issue'
+          return if Time.now - data.first.updated_at < 30.minutes
 
-        GithubIssue.find_or_initialize_by(page: page).tap do |issue|
-          issue.json_data = issues
-          issue.save
+          p 'Try to fetch...'
+          issues = GithubServices::FetchIssues.new(page: page).call
+
+          if issues.blank?
+            return
+          end
+
+          p 'Update issues:'
+          current_issue = data.first
+          current_issue.json_data = issues
+          current_issue.save
+        else
+
+          issues = GithubServices::FetchIssues.new(page: page).call
+
+          if issues.blank?
+            return
+          end
+
+          GithubIssue.find_or_initialize_by(page: page).tap do |issue|
+            issue.json_data = issues
+            issue.save
+          end
         end
 
         p "page #{page} synced done"
 
         page += 1
       end
-
-      # Github::SyncIssuesJob.set(wait: 2.hours).perform_later(page: 1)
     end
   end
 
