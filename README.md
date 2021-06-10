@@ -30,6 +30,9 @@ node server.js
 touch webapp/log/nginx.access.log
 touch webapp/log/nginx.error.log
 ```
+
+### Prepare config variables
+cp config/local_env.yml.example config/local_env.yml
 ### Prepare configuration
 ```
 cd tools-docker
