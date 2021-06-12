@@ -18,6 +18,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def repos
+    @user = User.find_by(username: params[:username])
+    @repo_list = @user.user_repos.map { |repo| repo.name }
+  end
+
   private
 
   def user_params
