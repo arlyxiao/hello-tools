@@ -7,6 +7,10 @@ const Repo = function (props) {
   const [name, setName] = useState("");
   const [repoList, setRepoList] = useState(JSON.parse(props.repoList));
 
+  React.useEffect(() => {
+    setToken(document.getElementById("github-token").value);
+  }, []);
+
   function saveGithubToken(token) {
     const params = {
       github_token: token,
@@ -90,7 +94,7 @@ const Repo = function (props) {
     })
       .then((res) => {
         if (res.status === 200) {
-          console.log('Sync done');
+          console.log("Sync done");
         }
       })
       .catch((err) => console.error("Error:", err));
@@ -102,10 +106,15 @@ const Repo = function (props) {
         <tbody>
           <tr>
             <td>
-              <input type="text" name="token" onChange={(e) => setToken(e.target.value)} />
+              <input
+                type="text"
+                name="token"
+                value={token}
+                onChange={(e) => setToken(e.target.value)}
+              />
             </td>
             <td>
-            <button type="button" onClick={() => saveGithubToken(token)}>
+              <button type="button" onClick={() => saveGithubToken(token)}>
                 Save Token
               </button>
             </td>
