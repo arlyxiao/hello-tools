@@ -50,11 +50,11 @@ module Github
         page += 1
       end
 
-      ActiveRecord::Base.connection.execute("Delete from blogs")
+      ActiveRecord::Base.connection.execute("Delete from topics")
       GithubIssue.all.map do |page|
         issue_data = JSON.parse(page.json_data)
         issue_data.each do |issue|
-          Blog.create(
+          Topic.create(
             title: issue['title'],
             content: issue['body'],
             created_at: issue['created_at']

@@ -1,5 +1,9 @@
-<% @issues.each do |issue| %>
+<% @topics.each do |topic| %>
   <li>
-    <%= issue[:title] %>
+    <%= link_to(topic) do %>
+      <%= topic.title %>
+    <% end %>
   </li>
 <% end %>
+
+<%= paginate @topics %>
