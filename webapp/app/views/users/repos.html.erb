@@ -1,7 +1,9 @@
 
-<div id="repo-list-page"></div>
-<div class="ddd"><%= raw(@user.user_repos.to_json) %></div>
+<input type="hidden" id="form-token" value="<%= form_authenticity_token %>" />
+
+<div id="repo-page"></div>
+
 <%= javascript_tag do %>
-  var kk = 'kk'
+  var repoList = '<%= raw(@repo_list.to_json) %>'
 <% end %>
-<%= javascript_pack_tag 'front/components/users/RepoList' %>
+<%= javascript_pack_tag 'front/components/users/Repo' %>

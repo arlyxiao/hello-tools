@@ -19,8 +19,11 @@ class UsersController < ApplicationController
   end
 
   def repos
-    @user = User.find_by(username: params[:username])
-    @repo_list = @user.user_repos.map { |repo| repo.name }
+    if current_user.nil?
+      raise 'Page not found'
+    end
+
+    @repo_list = current_user.repos.map { |repo| repo.name }
   end
 
   private

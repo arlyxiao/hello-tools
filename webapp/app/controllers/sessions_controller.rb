@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email].downcase)
     if user && user.authenticate(params[:password])
+      log_in(user)
       render json: {}, status: :ok
     else
       render json: {}, status: :forbidden

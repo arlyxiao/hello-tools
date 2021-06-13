@@ -3,15 +3,15 @@ module Github
   class SyncIssuesJob < ApplicationJob
     queue_as :default
   
-    def perform(page:)
+    def perform(repo:, page:)
       page ||= 1
 
       while true
-        data = GithubIssue.where(page: page)
+        data = GithubIssue.where(repo: repo, page: page)
 
         if data.exists?
           p 'Before update new issue'
-          return if Time.now - data.first.updated_at < 30.minutes
+          # return if Time.now - data.first.updated_at < 30.minutes
 
           p 'Try to fetch...'
           issues = GithubServices::FetchIssues.new(page: page).call
@@ -32,13 +32,13 @@ module Github
             return
           end
 
-          GithubIssue.find_or_initialize_by(page: page).tap do |issue|
+          GithubIssue.find_or_initialize_by(repo: repo, page: page).tap do |issue|
             issue.json_data = issues
             issue.save
           end
         end
 
-        p "page #{page} synced done"
+        p "#{repo} page #{page} synced done"
 
         page += 1
       end

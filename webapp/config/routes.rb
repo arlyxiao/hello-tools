@@ -6,6 +6,13 @@ Rails.application.routes.draw do
   post '/signin', to: 'sessions#create'
   delete '/signout', to: 'sessions#destroy'
 
-  resources :users
-  match '/:username/:repos' => 'users#repos', :via => [:get]
+  resources :users do
+    collection do
+      get :repos
+    end
+  end
+
+  post '/repos/sync_issues', to: 'repos#sync_issues'
+  post '/repos', to: 'repos#create'
+  delete '/repos', to: 'repos#destroy'
 end

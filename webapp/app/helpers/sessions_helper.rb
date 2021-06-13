@@ -9,6 +9,12 @@ module SessionsHelper
     end
   end
 
+  def logged_in_user
+    if current_user.nil?
+      redirect_to signin_url
+    end
+  end
+
   def log_out
     session.delete(:user_id)
     @current_user = nil
