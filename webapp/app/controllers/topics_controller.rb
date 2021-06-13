@@ -6,12 +6,6 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @markdown = Redcarpet::Markdown.new(
-      Redcarpet::Render::HTML,
-      fenced_code_blocks: true,
-      autolink: true,
-      prettify: true
-    )
     @topic = Topic.find(params[:id])
   end
 end

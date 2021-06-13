@@ -1,4 +1,4 @@
 <h4><%= @topic.title %></h4>
 <p>
-  <%= @markdown.render(@topic.content).html_safe %>
+  <%= render_markdown(@topic.content) %>
 </p>
