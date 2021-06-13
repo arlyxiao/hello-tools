@@ -3,8 +3,30 @@ import ReactDOM from "react-dom";
 import "../../styles/users.scss";
 
 const Repo = function (props) {
+  const [token, setToken] = useState("");
   const [name, setName] = useState("");
   const [repoList, setRepoList] = useState(JSON.parse(props.repoList));
+
+  function saveGithubToken(token) {
+    const params = {
+      github_token: token,
+    };
+    fetch(`/repos/save_github_token`, {
+      method: "POST",
+      body: JSON.stringify(params),
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document.getElementById("form-token").value,
+      },
+    })
+      .then((res) => {
+        if (res.status === 200) {
+        } else {
+          setToken("");
+        }
+      })
+      .catch((err) => console.error("Error:", err));
+  }
 
   function addRepo() {
     const params = {
@@ -80,6 +102,20 @@ const Repo = function (props) {
         <tbody>
           <tr>
             <td>
+              <input type="text" name="token" onChange={(e) => setToken(e.target.value)} />
+            </td>
+            <td>
+            <button type="button" onClick={() => saveGithubToken(token)}>
+                Save Token
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <tbody>
+          <tr>
+            <td>
               <input
                 type="text"
                 name="name"
@@ -94,6 +130,7 @@ const Repo = function (props) {
           </tr>
         </tbody>
       </table>
+
       <table>
         <tbody>
           {repoList &&

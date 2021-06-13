@@ -1,6 +1,11 @@
 class ReposController < ApplicationController
   before_action :logged_in_user
 
+  def save_github_token
+    current_user.github_token = params[:github_token]
+    current_user.save
+  end
+
   def create
     repo = current_user.repos.find_or_initialize_by(name: params[:name])
     if repo.save
@@ -22,7 +27,8 @@ class ReposController < ApplicationController
 
   def sync_issues
     if params[:repo].present?
-      Github::SyncIssuesJob.perform_later(repo: params[:name], page: 1)
+      token = current_user.github_token
+      Github::SyncIssuesJob.perform_later(token: token, repo: params[:name], page: 1)
       render json: {}, status: :ok and return
     end
 

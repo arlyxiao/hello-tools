@@ -1,18 +1,20 @@
 module GithubServices
   class FetchIssues
 
-    def initialize(page:)
+    def initialize(token:, repo:, page:)
+      @token = token
+      @repo = repo
       @page = page
     end
 
     def call
       begin
-        uri = URI("https://api.github.com/repos/#{ENV['GITHUB_REPO']}/issues")
+        uri = URI("https://api.github.com/repos/#{@repo}/issues")
         params = { page: @page }
         uri.query = URI.encode_www_form(params)
 
         req = Net::HTTP::Get.new(uri)
-        req['Authorization'] = "Bearer #{ENV['GITHUB_TOKEN']}"
+        req['Authorization'] = "Bearer #{@token}"
         req["Accept"] = "application/json"
 
         http = Net::HTTP.new(uri.host, uri.port)

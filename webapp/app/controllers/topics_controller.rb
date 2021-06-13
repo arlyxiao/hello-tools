@@ -2,8 +2,9 @@ class TopicsController < ApplicationController
   include GithubIssues
 
   def index
-    @issues = fetch_github_issues
+    @issues = Blog.all
+  end
 
-    render json: @issues
+  def show
   end
 end
