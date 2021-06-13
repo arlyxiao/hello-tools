@@ -34,10 +34,13 @@ const Signin = function () {
         'Content-Type': 'application/json',
         'X-CSRF-Token': document.getElementById('form-token').value
       },
-    }).then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.error("Error:", err));
-    }
+    }).then(res => {
+      if (res.status === 200) {
+        window.location.href = "/users/repos";
+      }
+    })
+    .catch(err => console.error("Error:", err));
+  }
   
   return (
     <>
