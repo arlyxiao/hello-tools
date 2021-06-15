@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
-import "../../../styles/front/users.scss";
+import "../../styles/front/users.scss";
+
 
 const Repo = function (props) {
   const [token, setToken] = useState("");
@@ -8,7 +9,7 @@ const Repo = function (props) {
   const [repoList, setRepoList] = useState(JSON.parse(props.repoList));
 
   React.useEffect(() => {
-    setToken(document.getElementById("github-token").value);
+    setToken(props.githubToken);
   }, []);
 
   function saveGithubToken(token) {
@@ -20,7 +21,7 @@ const Repo = function (props) {
       body: JSON.stringify(params),
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": document.getElementById("form-token").value,
+        "X-CSRF-Token": props.formToken
       },
     })
       .then((res) => {
@@ -42,7 +43,7 @@ const Repo = function (props) {
       body: JSON.stringify(params),
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": document.getElementById("form-token").value,
+        "X-CSRF-Token": props.formToken
       },
     })
       .then((res) => {
@@ -65,7 +66,7 @@ const Repo = function (props) {
       body: JSON.stringify(params),
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": document.getElementById("form-token").value,
+        "X-CSRF-Token": props.formToken
       },
     })
       .then((res) => {
@@ -89,7 +90,7 @@ const Repo = function (props) {
       body: JSON.stringify(params),
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": document.getElementById("form-token").value,
+        "X-CSRF-Token": props.formToken
       },
     })
       .then((res) => {
@@ -164,9 +165,4 @@ const Repo = function (props) {
   );
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  ReactDOM.render(
-    <Repo repoList={repoList} />,
-    document.getElementById("repo-page")
-  );
-});
+export default Repo;

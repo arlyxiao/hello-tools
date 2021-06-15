@@ -33,6 +33,7 @@ gem 'font-awesome-sass', '~> 5.15.1'
 
 gem 'redcarpet'
 gem 'kaminari'
+gem 'react-rails'
 
 
 group :development, :test do

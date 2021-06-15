@@ -1,4 +1,3 @@
-<input type="hidden" id="form-token" value="<%= form_authenticity_token %>" />
-
-<div id="signup-page"></div>
-<%= javascript_pack_tag 'components/front/users/Signup' %>
+<%= react_component("front/users/Signup", {
+  formToken: form_authenticity_token
+}) %>

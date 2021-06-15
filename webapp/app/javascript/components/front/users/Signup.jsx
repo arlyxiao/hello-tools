@@ -1,14 +1,15 @@
 import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
-import "../../../styles/front/users.scss";
+import "../../styles/front/users.scss";
 
 
-const Signup = function () {
+const Signup = function (props) {
   const [formErrorMessage, setFormErrorMessage] = useState("")
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
 
   function handleSubmit() {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -46,7 +47,7 @@ const Signup = function () {
       body: JSON.stringify(params),
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': document.getElementById('form-token').value
+        'X-CSRF-Token': props.formToken
       },
     }).then(res => {
       if (res.status === 201) {
@@ -124,6 +125,4 @@ const Signup = function () {
   );
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  ReactDOM.render(<Signup />, document.getElementById("signup-page"));
-});
+export default Signup

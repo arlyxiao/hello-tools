@@ -1,9 +1,10 @@
 import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
-import "../../../styles/front/users.scss";
+import { PROPS_ATTR } from "react_ujs";
+import "../../styles/front/users.scss";
 
 
-const Signin = function () {
+const Signin = function (props) {
   const [formErrorMessage, setFormErrorMessage] = useState("")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +32,7 @@ const Signin = function () {
       body: JSON.stringify(params),
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': document.getElementById('form-token').value
+        'X-CSRF-Token': props.formToken
       },
     }).then(res => {
       if (res.status === 200) {
@@ -73,7 +74,7 @@ const Signin = function () {
           </div>
         </div>
 
-        <button className="login-btn" onClick={() => handleSignin()}>
+        <button className="submit-btn" onClick={() => handleSignin()}>
           <span className="hide">
             <i className="fas fa-spinner fa-spin"></i>
           </span>
@@ -84,6 +85,4 @@ const Signin = function () {
   );
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  ReactDOM.render(<Signin />, document.getElementById("signin-page"));
-});
+export default Signin
