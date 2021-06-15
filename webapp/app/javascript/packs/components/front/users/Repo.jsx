@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
-import "../../styles/users.scss";
+import "../../../styles/front/users.scss";
 
 const Repo = function (props) {
   const [token, setToken] = useState("");
