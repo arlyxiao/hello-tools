@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
+
+import BaseLayout from "../layouts/BaseLayout";
 import "../../styles/front/users.scss";
 
 
@@ -21,7 +23,7 @@ const Repo = function (props) {
       body: JSON.stringify(params),
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": props.formToken
+        "X-CSRF-Token": props.formToken,
       },
     })
       .then((res) => {
@@ -43,7 +45,7 @@ const Repo = function (props) {
       body: JSON.stringify(params),
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": props.formToken
+        "X-CSRF-Token": props.formToken,
       },
     })
       .then((res) => {
@@ -66,7 +68,7 @@ const Repo = function (props) {
       body: JSON.stringify(params),
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": props.formToken
+        "X-CSRF-Token": props.formToken,
       },
     })
       .then((res) => {
@@ -90,7 +92,7 @@ const Repo = function (props) {
       body: JSON.stringify(params),
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": props.formToken
+        "X-CSRF-Token": props.formToken,
       },
     })
       .then((res) => {
@@ -102,20 +104,29 @@ const Repo = function (props) {
   }
 
   return (
-    <>
+    <BaseLayout>
       <table>
         <tbody>
           <tr>
             <td>
-              <input
-                type="text"
-                name="token"
-                value={token}
-                onChange={(e) => setToken(e.target.value)}
-              />
+              <div className="input-wrap d-flex flex-column justify-content-center align-items-center">
+                <div className="after-input">
+                  <div className="input-hint hide">Password</div>
+                  <input
+                    type="text"
+                    name="token"
+                    value={token}
+                    onChange={(e) => setToken(e.target.value)}
+                  />
+                </div>
+              </div>
             </td>
             <td>
-              <button type="button" onClick={() => saveGithubToken(token)}>
+              <button
+                className="small btn"
+                type="button"
+                onClick={() => saveGithubToken(token)}
+              >
                 Save Token
               </button>
             </td>
@@ -126,14 +137,23 @@ const Repo = function (props) {
         <tbody>
           <tr>
             <td>
-              <input
-                type="text"
-                name="name"
-                onChange={(e) => setName(e.target.value)}
-              />
+              <div className="input-wrap d-flex flex-column justify-content-center align-items-center">
+                <div className="after-input">
+                  <div className="input-hint hide">Repo Name</div>
+                  <input
+                    type="text"
+                    name="name"
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+              </div>
             </td>
             <td>
-              <button type="button" onClick={() => addRepo()}>
+              <button
+                className="small btn"
+                type="button"
+                onClick={() => addRepo()}
+              >
                 Add
               </button>
             </td>
@@ -148,12 +168,20 @@ const Repo = function (props) {
               <tr key={name}>
                 <td>{name}</td>
                 <td>
-                  <button type="button" onClick={() => removeRepo(name)}>
+                  <button
+                    type="button"
+                    className="small btn"
+                    onClick={() => removeRepo(name)}
+                  >
                     Remove
                   </button>
                 </td>
                 <td>
-                  <button type="button" onClick={() => syncIssues(name)}>
+                  <button
+                    type="button"
+                    className="small btn"
+                    onClick={() => syncIssues(name)}
+                  >
                     Sync Issues
                   </button>
                 </td>
@@ -161,7 +189,7 @@ const Repo = function (props) {
             ))}
         </tbody>
       </table>
-    </>
+    </BaseLayout>
   );
 };
 

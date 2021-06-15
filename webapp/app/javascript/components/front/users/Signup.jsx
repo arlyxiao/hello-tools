@@ -2,17 +2,16 @@ import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import "../../styles/front/users.scss";
 
-
 const Signup = function (props) {
-  const [formErrorMessage, setFormErrorMessage] = useState("")
+  const [formErrorMessage, setFormErrorMessage] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-
   function handleSubmit() {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test(email.toLowerCase())) {
       setFormErrorMessage("Email is invalid");
       return;
@@ -38,29 +37,30 @@ const Signup = function (props) {
       user: {
         email: email,
         username: username,
-        password: password
-      }
+        password: password,
+      },
     };
 
     fetch(`/users`, {
       method: "POST",
       body: JSON.stringify(params),
       headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': props.formToken
+        "Content-Type": "application/json",
+        "X-CSRF-Token": props.formToken,
       },
-    }).then(res => {
-      if (res.status === 201) {
-        window.location.href = "/signin";
-      }
     })
-    .catch(err => console.error("Error:", err));
+      .then((res) => {
+        if (res.status === 201) {
+          window.location.href = "/signin";
+        }
+      })
+      .catch((err) => console.error("Error:", err));
   }
-  
+
   return (
     <>
       <div className="form d-flex flex-column align-items-center">
-        <div className="error-message">{ formErrorMessage }</div>
+        <div className="error-message">{formErrorMessage}</div>
         <div className="input-wrap d-flex flex-column justify-content-center align-items-center">
           <div className="after-input">
             <div className="input-hint hide">Email</div>
@@ -69,7 +69,7 @@ const Signup = function (props) {
               type="email"
               placeholder="Email"
               name="email"
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
         </div>
@@ -82,7 +82,7 @@ const Signup = function (props) {
               type="text"
               placeholder="Username"
               name="username"
-              onChange={e => setUsername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
         </div>
@@ -95,7 +95,7 @@ const Signup = function (props) {
               type="password"
               placeholder="Password"
               name="password"
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
         </div>
@@ -109,12 +109,12 @@ const Signup = function (props) {
               placeholder="Password Confirmation"
               name="password"
               data-name="password-confirmation"
-              onChange={e => setPasswordConfirmation(e.target.value)}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
           </div>
         </div>
 
-        <button className="submit-btn" onClick={() => handleSubmit()}>
+        <button className="btn" onClick={() => handleSubmit()}>
           <span className="hide">
             <i className="fas fa-spinner fa-spin"></i>
           </span>
@@ -125,4 +125,4 @@ const Signup = function (props) {
   );
 };
 
-export default Signup
+export default Signup;

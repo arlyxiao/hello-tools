@@ -1,0 +1,46 @@
+@import "./basic.scss";
+
+.hide {
+  display: none !important;
+}
+
+button.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
+  height: 50px;
+  color: #5d5d5d;
+  background: #fff;
+  border: 1px solid #dedede;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: $bold;
+  outline: 0;
+  margin: 0;
+
+  &.small {
+    min-width: 100px;
+    height: 35px;
+  }
+
+  &.primary {
+    color: #fff;
+    background-color: #ff7d32;
+  }
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+
+  &.disabled {
+    opacity: 0.3;
+  }
+
+  &:hover {
+    color: #000;
+    background-color: #fff;
+  }
+}

@@ -1,9 +1,6 @@
-<% @topics.each do |topic| %>
-  <li>
-    <%= link_to(topic) do %>
-      <%= topic.title %>
-    <% end %>
-  </li>
-<% end %>
+<%= react_component("front/topics/Index", {
+  topics: @topics.map { |topic| link_to(topic.title, topic) }
+}) %>
+
 
 <%= paginate @topics %>

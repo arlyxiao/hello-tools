@@ -1,0 +1,23 @@
+<header>
+  <section class="container">
+    <ul>
+      <li class="first">
+        <a href="/">Home</a>
+      </li>
+    </ul>
+
+    <ul>
+      <li>
+        <%= link_to(signin_url) do %>
+          Signin
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to(signup_url) do %>
+          Signup
+        <% end %>
+      </li>
+    </ul>
+  </section>
+</header>
