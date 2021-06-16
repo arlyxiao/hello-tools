@@ -120,7 +120,7 @@ const Signup = function (props) {
           <span className="hide">
             <i className="fas fa-spinner fa-spin"></i>
           </span>
-          <span>Submit</span>
+          <span className="text">Submit</span>
         </button>
       </div>
     </BaseLayout>

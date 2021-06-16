@@ -3,11 +3,15 @@ module Github
   class SyncIssuesJob < ApplicationJob
     queue_as :default
   
-    def perform(token:, repo:, page:)
+    def perform(user:, repo:, page:)
       page ||= 1
+      token = user.github_token
 
       while true
-        data = GithubIssue.where(repo: repo, page: page)
+        data = GithubIssue.where(
+          repo: repo,
+          page: page
+        )
 
         if data.exists?
           p 'Before update new issue'
@@ -26,6 +30,7 @@ module Github
 
           p 'Update issues:'
           current_issue = data.first
+          current_issue.user = user
           current_issue.json_data = issues
           current_issue.save
         else
@@ -40,6 +45,7 @@ module Github
           end
 
           GithubIssue.find_or_initialize_by(repo: repo, page: page).tap do |issue|
+            issue.user = user
             issue.json_data = issues
             issue.save
           end
@@ -55,6 +61,8 @@ module Github
         issue_data = JSON.parse(page.json_data)
         issue_data.each do |issue|
           Topic.create(
+            user: user,
+            repo: repo,
             title: issue['title'],
             content: issue['body'],
             created_at: issue['created_at']

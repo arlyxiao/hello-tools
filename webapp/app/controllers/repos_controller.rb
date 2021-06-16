@@ -27,8 +27,11 @@ class ReposController < ApplicationController
 
   def sync_issues
     if params[:repo].present?
-      token = current_user.github_token
-      Github::SyncIssuesJob.perform_later(token: token, repo: params[:name], page: 1)
+      Github::SyncIssuesJob.perform_later(
+        user: current_user,
+        repo: params[:name],
+        page: 1
+      )
       render json: {}, status: :ok and return
     end
 

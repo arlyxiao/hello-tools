@@ -7,6 +7,7 @@ import "../../styles/front/users.scss";
 const Repo = function (props) {
   const [token, setToken] = useState("");
   const [name, setName] = useState("");
+  const [syncDone, setSyncDone] = useState(true);
   const [repoList, setRepoList] = useState(JSON.parse(props.repoList));
 
   React.useEffect(() => {
@@ -59,6 +60,10 @@ const Repo = function (props) {
   }
 
   function removeRepo(name) {
+    if (!confirm(`Are you sure to remove ${name}?`)) {
+      return;
+    }
+
     const params = {
       name: name,
     };
@@ -83,9 +88,15 @@ const Repo = function (props) {
   }
 
   function syncIssues(name) {
+    if (!syncDone) {
+      return;
+    }
+
     const params = {
       name: name,
     };
+
+    setSyncDone(false);
     fetch(`/repos/sync_issues`, {
       method: "POST",
       body: JSON.stringify(params),
@@ -99,16 +110,17 @@ const Repo = function (props) {
           console.log("Sync done");
         }
       })
-      .catch((err) => console.error("Error:", err));
+      .catch((err) => console.error("Error:", err))
+      .finally(function() {
+        setSyncDone(true);
+      });
   }
 
   return (
     <BaseLayout {...props}>
       <div className="repo-page">
         <div className="container">
-          <h5>
-            Github Token
-          </h5>
+          <h5>Github Token</h5>
           <table>
             <tbody>
               <tr>
@@ -141,9 +153,7 @@ const Repo = function (props) {
             </tbody>
           </table>
 
-          <h5>
-            Add New Repo
-          </h5>
+          <h5>Add New Repo</h5>
           <table>
             <tbody>
               <tr>
@@ -175,9 +185,7 @@ const Repo = function (props) {
             </tbody>
           </table>
 
-          <h5 className="repo-list-caption">
-            Repo List
-          </h5>
+          <h5 className="repo-list-caption">Repo List</h5>
           <table className="repo-list">
             <tbody>
               {repoList &&
@@ -199,7 +207,10 @@ const Repo = function (props) {
                         className="small btn"
                         onClick={() => syncIssues(name)}
                       >
-                        Sync Issues
+                        <span className={`${syncDone ? 'hide' : ''}`}>
+                          <i className="fas fa-spinner fa-spin"></i>
+                        </span>
+                        <span className={`${syncDone ? 'text' : 'hide'}`}>Sync Issues</span>
                       </button>
                     </td>
                   </tr>
