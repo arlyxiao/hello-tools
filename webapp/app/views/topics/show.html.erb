@@ -1,4 +1,9 @@
 <%= render_session_component("front/topics/Show", {
+  user: {
+    username: @topic.user.username
+  },
+  repo: @topic.repo,
   title: @topic.title,
-  content: render_markdown(@topic.content)
+  content: render_markdown(@topic.content),
+  created_at: time_ago_in_words(@topic.created_at)
 }) %>
