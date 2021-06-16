@@ -16,7 +16,7 @@ const Header = () => {
           </li>
 
           <li>
-            <a href="/signin">Signup</a>
+            <a href="/signup">Signup</a>
           </li>
         </ul>
       </section>

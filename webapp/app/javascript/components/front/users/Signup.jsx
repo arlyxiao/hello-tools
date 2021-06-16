@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
+
+import BaseLayout from "../layouts/BaseLayout";
 import "../../styles/front/users.scss";
 
 const Signup = function (props) {
@@ -58,7 +60,7 @@ const Signup = function (props) {
   }
 
   return (
-    <>
+    <BaseLayout>
       <div className="form d-flex flex-column align-items-center">
         <div className="error-message">{formErrorMessage}</div>
         <div className="input-wrap d-flex flex-column justify-content-center align-items-center">
@@ -121,7 +123,7 @@ const Signup = function (props) {
           <span>Submit</span>
         </button>
       </div>
-    </>
+    </BaseLayout>
   );
 };
 

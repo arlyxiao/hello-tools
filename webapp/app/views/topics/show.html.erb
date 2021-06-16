@@ -1,4 +1,4 @@
-<h4><%= @topic.title %></h4>
-<p>
-  <%= render_markdown(@topic.content) %>
-</p>
+<%= react_component("front/topics/Show", {
+  title: @topic.title,
+  content: render_markdown(@topic.content)
+}) %>

@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 import BaseLayout from "../layouts/BaseLayout";
 import "../../styles/front/users.scss";
 
-
 const Repo = function (props) {
   const [token, setToken] = useState("");
   const [name, setName] = useState("");
@@ -105,90 +104,110 @@ const Repo = function (props) {
 
   return (
     <BaseLayout>
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <div className="input-wrap d-flex flex-column justify-content-center align-items-center">
-                <div className="after-input">
-                  <div className="input-hint hide">Password</div>
-                  <input
-                    type="text"
-                    name="token"
-                    value={token}
-                    onChange={(e) => setToken(e.target.value)}
-                  />
-                </div>
-              </div>
-            </td>
-            <td>
-              <button
-                className="small btn"
-                type="button"
-                onClick={() => saveGithubToken(token)}
-              >
-                Save Token
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <div className="input-wrap d-flex flex-column justify-content-center align-items-center">
-                <div className="after-input">
-                  <div className="input-hint hide">Repo Name</div>
-                  <input
-                    type="text"
-                    name="name"
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </div>
-              </div>
-            </td>
-            <td>
-              <button
-                className="small btn"
-                type="button"
-                onClick={() => addRepo()}
-              >
-                Add
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <table>
-        <tbody>
-          {repoList &&
-            repoList.map((name) => (
-              <tr key={name}>
-                <td>{name}</td>
+      <div className="repo-page">
+        <div className="container">
+          <h5>
+            Github Token
+          </h5>
+          <table>
+            <tbody>
+              <tr>
                 <td>
-                  <button
-                    type="button"
-                    className="small btn"
-                    onClick={() => removeRepo(name)}
-                  >
-                    Remove
-                  </button>
+                  <div className="input-wrap d-flex flex-column justify-content-center align-items-center">
+                    <div className="after-input">
+                      <div className="input-hint hide">Password</div>
+                      <input
+                        type="text"
+                        name="token"
+                        value={token}
+                        onChange={(e) => setToken(e.target.value)}
+                      />
+                    </div>
+                  </div>
                 </td>
+              </tr>
+
+              <tr>
                 <td>
                   <button
-                    type="button"
                     className="small btn"
-                    onClick={() => syncIssues(name)}
+                    type="button"
+                    onClick={() => saveGithubToken(token)}
                   >
-                    Sync Issues
+                    Save Token
                   </button>
                 </td>
               </tr>
-            ))}
-        </tbody>
-      </table>
+            </tbody>
+          </table>
+
+          <h5>
+            Add New Repo
+          </h5>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <div className="input-wrap d-flex flex-column justify-content-center align-items-center">
+                    <div className="after-input">
+                      <div className="input-hint hide">Repo Name</div>
+                      <input
+                        type="text"
+                        name="name"
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <button
+                    className="small btn"
+                    type="button"
+                    onClick={() => addRepo()}
+                  >
+                    Add
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h5 className="repo-list-caption">
+            Repo List
+          </h5>
+          <table className="repo-list">
+            <tbody>
+              {repoList &&
+                repoList.map((name) => (
+                  <tr key={name}>
+                    <td>{name}</td>
+                    <td>
+                      <button
+                        type="button"
+                        className="small btn"
+                        onClick={() => removeRepo(name)}
+                      >
+                        Remove
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        type="button"
+                        className="small btn"
+                        onClick={() => syncIssues(name)}
+                      >
+                        Sync Issues
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </BaseLayout>
   );
 };

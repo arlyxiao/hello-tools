@@ -1,8 +1,31 @@
 @import "./shared/layout.scss";
 @import "./shared/form.scss";
 
-
 .form {
   max-width: 300px;
   margin: 30px auto 0 auto;
+}
+
+.repo-page {
+  h5 {
+    margin-bottom: 1rem;
+  }
+
+  .repo-list-caption {
+    margin-bottom: 0;
+  }
+
+  table {
+    width: 500px;
+    margin: 0 0 35px 0;
+
+    &.repo-list {
+      border-collapse: separate;
+      border-spacing: 0 1rem;
+    }
+  }
+
+  .input-wrap {
+    margin-bottom: 1rem;
+  }
 }
