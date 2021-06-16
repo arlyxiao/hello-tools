@@ -1,3 +1,11 @@
-<%= render_session_component("front/users/Signup", {
-  formToken: form_authenticity_token
-}) %>
+<% if current_user.nil? %>
+
+  <%= render_session_component("front/users/Signup", {
+    formToken: form_authenticity_token
+  }) %>
+
+<% else %>
+
+  <%= render_session_component("front/users/Authenticated", {}) %>
+
+<% end %>
