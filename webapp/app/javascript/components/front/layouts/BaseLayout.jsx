@@ -3,10 +3,10 @@ import * as React from "react";
 import Header from "./Header";
 
 
-const BaseLayout = ({ children }) => {
+const BaseLayout = ({ children, currentUser }) => {
   return (
     <div className="base-layout">
-      <Header />
+      <Header currentUser={currentUser} />
 
       {children}
 

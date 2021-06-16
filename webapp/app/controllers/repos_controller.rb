@@ -1,5 +1,5 @@
 class ReposController < ApplicationController
-  before_action :logged_in_user
+  before_action :has_authenticated?
 
   def save_github_token
     current_user.github_token = params[:github_token]

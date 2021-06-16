@@ -9,7 +9,7 @@ module SessionsHelper
     end
   end
 
-  def logged_in_user
+  def has_authenticated?
     if current_user.nil?
       redirect_to signin_url
     end

@@ -1,4 +1,4 @@
-<%= react_component("front/topics/Index", {
+<%= render_session_component("front/topics/Index", {
   topics: @topics.map { |topic| link_to(topic.title, topic) },
   pagination: paginate(@topics)
 }) %>

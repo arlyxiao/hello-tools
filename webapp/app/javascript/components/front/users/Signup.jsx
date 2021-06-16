@@ -60,7 +60,7 @@ const Signup = function (props) {
   }
 
   return (
-    <BaseLayout>
+    <BaseLayout {...props}>
       <div className="form d-flex flex-column align-items-center">
         <div className="error-message">{formErrorMessage}</div>
         <div className="input-wrap d-flex flex-column justify-content-center align-items-center">

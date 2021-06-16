@@ -103,7 +103,7 @@ const Repo = function (props) {
   }
 
   return (
-    <BaseLayout>
+    <BaseLayout {...props}>
       <div className="repo-page">
         <div className="container">
           <h5>

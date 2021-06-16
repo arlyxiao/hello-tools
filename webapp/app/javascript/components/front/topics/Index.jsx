@@ -8,7 +8,7 @@ const Index = (props) => {
   const pagination = props.pagination;
 
   return (
-    <BaseLayout>
+    <BaseLayout {...props}>
       <div className="topics container">
         <div className="container">
           <section>

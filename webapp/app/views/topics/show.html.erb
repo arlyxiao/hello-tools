@@ -1,4 +1,4 @@
-<%= react_component("front/topics/Show", {
+<%= render_session_component("front/topics/Show", {
   title: @topic.title,
   content: render_markdown(@topic.content)
 }) %>

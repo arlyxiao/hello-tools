@@ -16,10 +16,10 @@ const Show = (props) => {
   }, []);
 
   return (
-    <BaseLayout>
+    <BaseLayout {...props}>
       <section className="topic" ref={node}>
         <div className="container">
-          <h4>{title}</h4>
+          <h4 className="title">{title}</h4>
           <p dangerouslySetInnerHTML={{ __html: content }}></p>
         </div>
       </section>

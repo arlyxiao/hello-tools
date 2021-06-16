@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :has_authenticated?, only: [:repos]
+
   def show
     @user = User.find(params[:id])
   end
