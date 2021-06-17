@@ -1,12 +1,17 @@
 @import "./shared/layout.scss";
-@import "./shared/form.scss";
 
 .form {
   max-width: 300px;
   margin: 30px auto 0 auto;
+
+  .input-wrap {
+    margin: 0 0 25px 0;
+  }
 }
 
 .repo-page {
+  margin: 35px 0 0 0;
+
   h5 {
     margin-bottom: 1rem;
   }

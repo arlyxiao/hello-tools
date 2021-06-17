@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import BaseLayout from "../layouts/BaseLayout";
+import SearchPanel from "../layouts/SearchPanel";
 import "../../styles/front/topics.scss";
 
 const Index = (props) => {
@@ -9,6 +10,8 @@ const Index = (props) => {
 
   return (
     <BaseLayout {...props}>
+      <SearchPanel />
+
       <div className="topics container">
         <div className="container">
           <section>

@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 
 import BaseLayout from "../layouts/BaseLayout";
+import SearchPanel from "../layouts/SearchPanel";
 import "../../styles/front/topics.scss";
 
 const Show = (props) => {
@@ -19,6 +20,8 @@ const Show = (props) => {
 
   return (
     <BaseLayout {...props}>
+      <SearchPanel />
+
       <section className="topic" ref={node}>
         <div className="container">
           <h4 className="title">{title}</h4>
