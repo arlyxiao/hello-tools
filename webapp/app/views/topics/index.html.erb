@@ -1,6 +1,7 @@
 <%= render_session_component("front/topics/Index", {
   topics: @topics.map do |topic|
     {
+      id: topic.id,
       link: link_to(topic.title, topic),
       created_at: render_time(topic.created_at),
       label_text: topic.label_text

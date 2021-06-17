@@ -2,7 +2,12 @@ class TopicsController < ApplicationController
   include GithubIssues
 
   def index
-    @topics = Topic.order("created_at DESC").page params[:page]
+    query = Topic.order("created_at DESC")
+    if params[:q].present?
+      query = query.where("title LIKE ?", "%#{params[:q]}%")
+    end
+
+    @topics = query.page(params[:page])
   end
 
   def show
