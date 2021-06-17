@@ -43,4 +43,9 @@ button.btn {
     color: #000;
     background-color: #fff;
   }
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
 }

@@ -7,6 +7,7 @@ const Show = (props) => {
   const title = props.title;
   const content = props.content;
   const createdAt = props.created_at;
+  const labelText = props.label_text;
   const node = useRef(null);
 
   React.useEffect(() => {
@@ -21,10 +22,19 @@ const Show = (props) => {
       <section className="topic" ref={node}>
         <div className="container">
           <h4 className="title">{title}</h4>
-          <p>
-            <span className="time">{createdAt} ago</span>
-          </p>
-          <p dangerouslySetInnerHTML={{ __html: content }}></p>
+          <div className="small-text">
+            <span className="time">{createdAt}</span>
+            {labelText.length > 0 && (
+              <>
+                <span>, &nbsp;</span>
+                <span className="label">{labelText}</span>
+              </>
+            )}
+          </div>
+          <div
+            className="content-body"
+            dangerouslySetInnerHTML={{ __html: content }}
+          ></div>
         </div>
       </section>
     </BaseLayout>

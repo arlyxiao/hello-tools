@@ -9,5 +9,9 @@ module Application
       )
       markdown.render(content).html_safe
     end
+
+    def render_time(time)
+      "#{time_ago_in_words(time)} ago"
+    end
   end  
 end

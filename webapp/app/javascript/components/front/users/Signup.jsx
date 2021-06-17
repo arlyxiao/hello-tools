@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import ReactDOM from "react-dom";
 
 import BaseLayout from "../layouts/BaseLayout";
 import "../../styles/front/users.scss";
@@ -54,6 +53,8 @@ const Signup = function (props) {
       .then((res) => {
         if (res.status === 201) {
           window.location.href = "/signin";
+        } else {
+          setFormErrorMessage("Invalid signup data.");
         }
       })
       .catch((err) => console.error("Error:", err));

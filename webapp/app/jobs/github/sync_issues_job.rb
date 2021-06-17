@@ -56,17 +56,20 @@ module Github
         page += 1
       end
 
-      ActiveRecord::Base.connection.execute("Delete from topics")
-      GithubIssue.all.map do |page|
+      # ActiveRecord::Base.connection.execute("Delete from topics")
+      GithubIssue.where(repo: repo).map do |page|
+        p 'Push to topics'
         issue_data = JSON.parse(page.json_data)
         issue_data.each do |issue|
-          Topic.create(
-            user: user,
-            repo: repo,
-            title: issue['title'],
-            content: issue['body'],
-            created_at: issue['created_at']
-          )
+          Topic.find_or_initialize_by(source_id: issue['id']).tap do |topic|
+            topic.user = user
+            topic.repo = repo
+            topic.title = issue['title']
+            topic.content = issue['body']
+            topic.label_text = issue['labels'].map { |label| label['name'] }.join(', ')
+            topic.created_at = issue['created_at']
+            topic.save
+          end
         end
       end
 

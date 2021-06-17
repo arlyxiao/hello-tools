@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   include GithubIssues
 
   def index
-    @topics = Topic.order(:id).page params[:page]
+    @topics = Topic.order("created_at DESC").page params[:page]
   end
 
   def show

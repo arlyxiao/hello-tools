@@ -38,11 +38,26 @@
   }
 
   h4.title {
+    font-size: 24px;
     margin: 0 0 30px 0;
   }
 
-  .time {
+  h3, h4, h5 {
+    font-size: 18px;
+  }
+}
+
+.content-body {
+  margin: 25px 0 0 0;
+}
+
+.small-text {
+  span.time {
     color: #666;
+  }
+
+  span.label {
+    color: rgb(137, 121, 212);
   }
 }
 

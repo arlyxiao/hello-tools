@@ -5,5 +5,6 @@
   repo: @topic.repo,
   title: @topic.title,
   content: render_markdown(@topic.content),
-  created_at: time_ago_in_words(@topic.created_at)
+  label_text: @topic.label_text,
+  created_at: render_time(@topic.created_at)
 }) %>

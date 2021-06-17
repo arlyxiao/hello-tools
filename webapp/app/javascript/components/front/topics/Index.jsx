@@ -16,7 +16,10 @@ const Index = (props) => {
               {topics &&
                 topics.map((topic) => (
                   <li key={topic}>
-                    <div dangerouslySetInnerHTML={{ __html: topic }}></div>
+                    <div dangerouslySetInnerHTML={{ __html: topic.link }}></div>
+                    <div className="small-text">
+                      <span className="time">{topic.created_at}</span>
+                    </div>
                   </li>
                 ))}
             </ul>
