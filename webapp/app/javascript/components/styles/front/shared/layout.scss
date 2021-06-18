@@ -5,6 +5,12 @@
   margin: 0 auto;
 }
 
+button:focus,
+a:focus
+{
+  outline: none;
+}
+
 header {
   display: flex;
   align-items: center;

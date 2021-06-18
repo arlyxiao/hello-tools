@@ -4,7 +4,7 @@ class TopicsController < ApplicationController
   def index
     query = Topic.order("created_at DESC")
     if params[:q].present?
-      query = query.where("title LIKE ?", "%#{params[:q]}%")
+      query = query.where("lower(title) LIKE ?", "%#{params[:q]}%")
     end
 
     @topics = query.page(params[:page])

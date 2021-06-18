@@ -115,8 +115,8 @@ button.btn {
   }
 
   &:focus {
-    border: none;
-    outline: none;
+    border: 0;
+    outline: 0;
   }
 
   &.disabled {
@@ -126,10 +126,5 @@ button.btn {
   &:hover {
     color: #000;
     background-color: #fff;
-  }
-
-  &:focus {
-    border: none;
-    outline: none;
   }
 }

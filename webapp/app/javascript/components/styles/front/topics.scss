@@ -5,6 +5,9 @@
   padding: 0 0 80px 0;
 
   ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 420px);
+    grid-column-gap: 15px;
     padding: 0;
 
     li {
@@ -44,6 +47,11 @@
 
   h3, h4, h5 {
     font-size: 18px;
+  }
+
+  img {
+    max-width: 500px;
+    margin: 0 auto;
   }
 }
 

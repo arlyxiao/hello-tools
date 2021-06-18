@@ -14,7 +14,7 @@ const Index = (props) => {
 
       <div className="topics container">
         <div className="container">
-          <section>
+          <section className="list">
             <ul>
               {topics &&
                 topics.map((topic) => (
