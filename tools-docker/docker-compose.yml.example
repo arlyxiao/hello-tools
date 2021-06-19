@@ -19,7 +19,7 @@ services:
     image: postgres
     ports:
       - '5432:5432'
-    command: ["postgres", "-c", "fsync=false", "-c", "full_page_writes=off"]
+    command: ["postgres", "-c", "fsync=true", "-c", "full_page_writes=on"]
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
@@ -40,6 +40,14 @@ services:
       RAILS_ENV: development
       WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
 
+  redis_db:
+    image: redis:latest
+    command: redis-server
+    expose:
+     - "6379"
+    ports:
+      - "5379:6379"
+
   webapp:
     build:
       context: ./docker/webapp
@@ -51,6 +59,7 @@ services:
     # command: bash -c "bundle exec puma -C config/puma.rb"
     environment:
       WEBPACKER_DEV_SERVER_HOST: webpack
+      REDIS_URL: redis://redis_db:6379/0
 
     volumes:
       - ../webapp:/webapp
@@ -58,6 +67,7 @@ services:
     ports:
       - "3008:3008"
     depends_on:
+      - redis_db
       - webpack
       - db
 

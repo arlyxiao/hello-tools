@@ -1,13 +1,12 @@
-import React, { useState, useRef } from "react";
-import ReactDOM from "react-dom";
+import React, { useState } from "react";
 
 import BaseLayout from "../layouts/BaseLayout";
+import RepoRow from "./RepoRow";
 import "../../styles/front/users.scss";
 
-const Repo = function (props) {
+const Dashboard = function (props) {
   const [token, setToken] = useState("");
   const [name, setName] = useState("");
-  const [syncDone, setSyncDone] = useState(true);
   const [repoList, setRepoList] = useState(JSON.parse(props.repoList));
 
   React.useEffect(() => {
@@ -18,7 +17,7 @@ const Repo = function (props) {
     const params = {
       github_token: token,
     };
-    fetch(`/repos/save_github_token`, {
+    fetch(`/repositories/save_github_token`, {
       method: "POST",
       body: JSON.stringify(params),
       headers: {
@@ -40,7 +39,7 @@ const Repo = function (props) {
       name: name,
     };
 
-    fetch(`/repos`, {
+    fetch(`/repositories`, {
       method: "POST",
       body: JSON.stringify(params),
       headers: {
@@ -57,63 +56,6 @@ const Repo = function (props) {
         }
       })
       .catch((err) => console.error("Error:", err));
-  }
-
-  function removeRepo(name) {
-    if (!confirm(`Are you sure to remove ${name}?`)) {
-      return;
-    }
-
-    const params = {
-      name: name,
-    };
-    fetch(`/repos`, {
-      method: "DELETE",
-      body: JSON.stringify(params),
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRF-Token": props.formToken,
-      },
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          const index = repoList.indexOf(name);
-          if (index > -1) {
-            repoList.splice(index, 1);
-          }
-          setRepoList([...repoList]);
-        }
-      })
-      .catch((err) => console.error("Error:", err));
-  }
-
-  function syncIssues(name) {
-    if (!syncDone) {
-      return;
-    }
-
-    const params = {
-      name: name,
-    };
-
-    setSyncDone(false);
-    fetch(`/repos/sync_issues`, {
-      method: "POST",
-      body: JSON.stringify(params),
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRF-Token": props.formToken,
-      },
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          console.log("Sync done");
-        }
-      })
-      .catch((err) => console.error("Error:", err))
-      .finally(function() {
-        setSyncDone(true);
-      });
   }
 
   return (
@@ -190,30 +132,7 @@ const Repo = function (props) {
             <tbody>
               {repoList &&
                 repoList.map((name) => (
-                  <tr key={name}>
-                    <td>{name}</td>
-                    <td>
-                      <button
-                        type="button"
-                        className="small btn"
-                        onClick={() => removeRepo(name)}
-                      >
-                        Remove
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        className="small btn"
-                        onClick={() => syncIssues(name)}
-                      >
-                        <span className={`${syncDone ? 'hide' : ''}`}>
-                          <i className="fas fa-spinner fa-spin"></i>
-                        </span>
-                        <span className={`${syncDone ? 'text' : 'hide'}`}>Sync Issues</span>
-                      </button>
-                    </td>
-                  </tr>
+                  <RepoRow key={name} name={name} formToken={props.formToken} />
                 ))}
             </tbody>
           </table>
@@ -223,4 +142,4 @@ const Repo = function (props) {
   );
 };
 
-export default Repo;
+export default Dashboard;

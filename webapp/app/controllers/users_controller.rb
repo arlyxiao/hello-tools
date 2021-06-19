@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :has_authenticated?, only: [:repos]
+  # before_action :has_authenticated?, only: [:repos]
 
   def show
     @user = User.find(params[:id])
@@ -18,14 +18,6 @@ class UsersController < ApplicationController
     else
       render json: {}, status: :not_acceptable
     end
-  end
-
-  def repos
-    if current_user.nil?
-      raise 'Page not found'
-    end
-
-    @repo_list = current_user.repos.map { |repo| repo.name }
   end
 
   private

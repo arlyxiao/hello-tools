@@ -13,8 +13,11 @@ Rails.application.routes.draw do
     end
   end
 
-  post '/repos/save_github_token', to: 'repos#save_github_token'
-  post '/repos/sync_issues', to: 'repos#sync_issues'
-  post '/repos', to: 'repos#create'
-  delete '/repos', to: 'repos#destroy'
+  resources :repositories do
+    collection do
+      post 'save_github_token'
+      post 'sync_issues'
+    end
+  end
+  delete '/repositories', to: 'repositories#destroy'
 end

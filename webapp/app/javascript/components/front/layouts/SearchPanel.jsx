@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 
 const SearchPanel = (props) => {
   const urlParams = new URLSearchParams(window.location.search);
-  const [queryText, setQueryText] = useState(urlParams.get("q"));
+  const [queryText, setQueryText] = useState(urlParams.get("q") ? urlParams.get("q") : "");
   const node = useRef(null);
 
   React.useEffect(() => {

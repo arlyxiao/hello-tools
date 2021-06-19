@@ -14,9 +14,6 @@ module Github
         )
 
         if data.exists?
-          p 'Before update new issue'
-          # return if Time.now - data.first.updated_at < 30.minutes
-
           p 'Try to fetch...'
           issues = GithubServices::FetchIssues.new(
             token: token,
@@ -72,6 +69,11 @@ module Github
           end
         end
       end
+
+      SyncGithubIssuesChannel.broadcast_to(
+        User.find(9),
+        done: true
+      )
 
     end
   end
