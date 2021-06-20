@@ -37,7 +37,7 @@ const Signin = function (props) {
     })
       .then((res) => {
         if (res.status === 200) {
-          window.location.href = "/users/repos";
+          window.location.href = "/";
         } else {
           setFormErrorMessage("Invalid signin data.");
         }

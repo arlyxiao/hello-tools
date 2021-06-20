@@ -16,6 +16,7 @@ const RepoRow = function (props) {
       disconnected() {},
 
       received(data) {
+        // console.log(data)
         if (data.done) {
           setSyncDone(true);
         }
@@ -23,7 +24,7 @@ const RepoRow = function (props) {
     });
 
     return () => {
-      setSyncDone(false);
+      setSyncDone(true);
     };
   }, []);
 

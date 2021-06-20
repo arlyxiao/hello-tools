@@ -4,6 +4,28 @@ module Github
     queue_as :default
   
     def perform(user:, repo:, page:)
+      begin
+        sync_on_github_issues(
+          user: user,
+          repo: repo,
+          page: page
+        )
+
+        sync_on_topics(
+          user: user,
+          repo: repo
+        )
+
+        notify_client(user)
+      rescue => e
+        Rails.logger.debug("Sync error: #{e}")
+      end
+    end
+
+
+    private
+
+    def sync_on_github_issues(user:, repo:, page:)
       page ||= 1
       token = user.github_token
 
@@ -52,7 +74,9 @@ module Github
 
         page += 1
       end
+    end
 
+    def sync_on_topics(user:, repo:)
       # ActiveRecord::Base.connection.execute("Delete from topics")
       GithubIssue.where(repo: repo).map do |page|
         p 'Push to topics'
@@ -69,13 +93,15 @@ module Github
           end
         end
       end
+    end
 
+    def notify_client(user)
       SyncGithubIssuesChannel.broadcast_to(
         user,
         done: true
       )
-
     end
+
   end
 
 end
