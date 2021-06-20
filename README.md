@@ -34,6 +34,7 @@ touch webapp/log/nginx.error.log
 ### Prepare config variables
 cp config/local_env.yml.example config/local_env.yml
 cp config/database.yml.example config/database.yml
+cp config/cable.yml.example config/cable.yml
 ### Prepare configuration
 ```
 cd tools-docker
