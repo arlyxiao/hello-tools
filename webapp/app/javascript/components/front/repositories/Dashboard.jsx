@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import BaseLayout from "../layouts/BaseLayout";
 import RepoRow from "./RepoRow";
@@ -7,10 +8,17 @@ import "../../styles/front/users.scss";
 const Dashboard = function (props) {
   const [token, setToken] = useState("");
   const [name, setName] = useState("");
-  const [repoList, setRepoList] = useState(JSON.parse(props.repoList));
+  const dispatch = useDispatch();
 
-  React.useEffect(() => {
+  const repoList = useSelector((state) => state.repoList);
+
+  React.useLayoutEffect(() => {
     setToken(props.githubToken);
+
+    dispatch({
+      type: "repoList",
+      value: JSON.parse(props.repoList),
+    });
   }, []);
 
   function saveGithubToken(token) {
@@ -51,8 +59,11 @@ const Dashboard = function (props) {
         if (res.status === 201) {
           if (repoList.indexOf(name) === -1) {
             repoList.push(name);
+            dispatch({
+              type: "repoList",
+              value: repoList,
+            });
           }
-          setRepoList([...repoList]);
         }
       })
       .catch((err) => console.error("Error:", err));

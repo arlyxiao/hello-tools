@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import consumer from "../../../channels/consumer";
-
 
 const RepoRow = function (props) {
   const [syncDone, setSyncDone] = useState(true);
   const name = props.name;
+
+  const dispatch = useDispatch();
+  let repoList = useSelector((state) => state.repoList);
 
   React.useEffect(() => {
     consumer.subscriptions.create("SyncGithubIssuesChannel", {
@@ -18,6 +21,10 @@ const RepoRow = function (props) {
         }
       },
     });
+
+    return () => {
+      setSyncDone(false);
+    };
   }, []);
 
   function removeRepo(name) {
@@ -41,8 +48,11 @@ const RepoRow = function (props) {
           const index = repoList.indexOf(name);
           if (index > -1) {
             repoList.splice(index, 1);
+            dispatch({
+              type: "repoList",
+              value: repoList,
+            });
           }
-          setRepoList([...repoList]);
         }
       })
       .catch((err) => console.error("Error:", err));
