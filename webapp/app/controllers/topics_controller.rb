@@ -2,19 +2,17 @@ class TopicsController < ApplicationController
   include GithubIssues
 
   def index
-    # SyncGithubIssuesChannel.broadcast_to(
-    #   User.find(9),
-    #   title: 'New things!',
-    #   body: 'All the news fit to print'
-    # )
-    # ActionCable.server.broadcast "test_9", { title: 'DHH', content: 'Rails is just swell' }
+    begin
+      query = Topic.order("created_at DESC")
+      if params[:q].present?
+        query = query.where("lower(title) LIKE ?", "%#{params[:q]}%")
+      end
 
-    query = Topic.order("created_at DESC")
-    if params[:q].present?
-      query = query.where("lower(title) LIKE ?", "%#{params[:q]}%")
+      @topics = query.page(params[:page])
+    rescue => e
+      @topics = []
+      Rails.logger.debug("Topics error: #{e}")
     end
-
-    @topics = query.page(params[:page])
   end
 
   def show
