@@ -30,6 +30,7 @@ services:
       context: ./docker/webapp
       dockerfile: Dockerfile
     command: ./bin/webpack-dev-server
+    # command: ./bin/webpack --watch --colors --progress
     volumes:
       - ../webapp:/webapp
       - bundler_gems:/usr/local/bundle
