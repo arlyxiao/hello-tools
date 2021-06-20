@@ -60,6 +60,7 @@ services:
     # command: bash -c "bundle exec puma -C config/puma.rb"
     environment:
       # SECRET_KEY_BASE: 'Please run RAILS_ENV=production rake secret'
+      # RAILS_ENV: production
       WEBPACKER_DEV_SERVER_HOST: webpack
       REDIS_URL: redis://redis_db:6379/0
 
