@@ -5,7 +5,7 @@ const repoList = (state = [], action) => {
   if (action.type === 'repoList') {
     return [
       ...action.value
-    ].reverse();
+    ];
   }
 
   return state;

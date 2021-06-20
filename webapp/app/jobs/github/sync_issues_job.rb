@@ -71,7 +71,7 @@ module Github
       end
 
       SyncGithubIssuesChannel.broadcast_to(
-        User.find(9),
+        user,
         done: true
       )
 

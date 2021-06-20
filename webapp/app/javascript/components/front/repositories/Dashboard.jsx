@@ -43,6 +43,10 @@ const Dashboard = function (props) {
   }
 
   function addRepo() {
+    if (name === '') {
+      return;
+    }
+
     const params = {
       name: name,
     };
@@ -142,7 +146,7 @@ const Dashboard = function (props) {
           <table className="repo-list">
             <tbody>
               {repoList &&
-                repoList.map((name) => (
+                repoList.reverse().map((name) => (
                   <RepoRow key={name} name={name} formToken={props.formToken} />
                 ))}
             </tbody>
