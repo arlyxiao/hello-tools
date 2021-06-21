@@ -3,12 +3,10 @@ class TopicsController < ApplicationController
 
   def index
     begin
-      query = Topic.order("created_at DESC")
-      if params[:q].present?
-        query = query.where("lower(title) LIKE ?", "%#{params[:q]}%")
-      end
-
-      @topics = query.page(params[:page])
+      @topics = Topic.search(
+        query_text: params[:q],
+        page: params[:page]
+      )
     rescue => e
       @topics = []
       Rails.logger.debug("Topics error: #{e}")
