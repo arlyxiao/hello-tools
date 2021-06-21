@@ -64,3 +64,15 @@ docker-compose run webapp rake db:migrate
 cd tools-docker
 docker-compose up
 ```
+
+### Test
+Enter container
+
+```
+docker exec -ti tools-docker_webapp_1 /bin/bash
+```
+
+Run test example
+```
+rspec spec/modles/topic_spec.rb
+```
