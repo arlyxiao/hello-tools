@@ -6,7 +6,7 @@ const SearchPanel = (props) => {
   const node = useRef(null);
 
   React.useEffect(() => {
-    node.current.querySelector(".search-input").focus();
+    // node.current.querySelector(".search-input").focus();
   }, []);
 
   return (
