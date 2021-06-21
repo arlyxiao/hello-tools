@@ -7,6 +7,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
+# https://stackoverflow.com/questions/48091582/ruby-gem-uninitialized-constant-factorybot
 require 'support/factory_bot'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
