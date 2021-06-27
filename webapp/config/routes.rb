@@ -20,4 +20,7 @@ Rails.application.routes.draw do
     end
   end
   delete '/repositories', to: 'repositories#destroy'
+
+  get '/tools/html-to-pdf', to: 'tools#html_to_pdf'
+  resources :tools
 end

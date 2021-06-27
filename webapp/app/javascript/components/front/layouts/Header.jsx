@@ -16,6 +16,10 @@ const Header = (props) => {
           <li className="">
             <a href="/repositories">Repo</a>
           </li>
+
+          <li className="">
+            <a href="/tools">Tools</a>
+          </li>
         </ul>
 
         <ul>

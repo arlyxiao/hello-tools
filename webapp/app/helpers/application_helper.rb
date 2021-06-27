@@ -10,4 +10,11 @@ module ApplicationHelper
     })
     react_component(component_name, attributes)
   end
+
+  def render_tools_component(component_name, attributes)
+    attributes.merge!({
+      node_server_host: ENV['NODE_SERVER_HOST']
+    })
+    react_component(component_name, attributes)
+  end
 end

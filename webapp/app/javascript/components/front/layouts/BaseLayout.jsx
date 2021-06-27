@@ -13,8 +13,6 @@ const BaseLayout = ({ children, currentUser }) => {
       <Header currentUser={currentUser} />
 
       {children}
-
-      <footer></footer>
     </div>
   );
 };

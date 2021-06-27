@@ -4,12 +4,10 @@ import BaseLayout from "../layouts/BaseLayout";
 import "../../styles/front/users.scss";
 
 const Authenticated = (props) => {
-  const topics = props.topics;
-  const pagination = props.pagination;
 
   return (
     <BaseLayout {...props}>
-      <div className="container">
+      <div className="form">
         <h5>
           Authenticated?
         </h5>
