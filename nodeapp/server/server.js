@@ -47,7 +47,7 @@ app.get("/html-to-pdf", async (req, res) => {
     await browser.close();
   } catch (execption) {
     console.log(execption.message);
-    res.send(execption.message)
+    // res.send(execption.message)
   }
 });
 
