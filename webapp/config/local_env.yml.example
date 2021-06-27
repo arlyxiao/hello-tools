@@ -1,1 +1,1 @@
-NODE_SERVER_HOST: 'http://localhost:4500'
+NODE_SERVER_HOST: 'http://localhost:4500/node-api'
