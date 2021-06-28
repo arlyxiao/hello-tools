@@ -8,7 +8,7 @@ const InternalServerError = (props) => {
     <BaseLayout>
       <div className="error-page container">
         <div className="card">
-          <div className="card-body d-flex justify-content-center align-items-center">
+          <div className="card-body d-flex flex-column justify-content-center align-items-center">
             <h4>Server Error</h4>
             <a href="/">Back to Home</a>
           </div>
