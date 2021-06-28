@@ -5,7 +5,7 @@ import "../../styles/front/tools.scss";
 
 const Entry = (props) => {
   return (
-    <BaseLayout>
+    <BaseLayout {...props}>
       <div className="entry-page">
         <div className="card">
           <div className="card-body">

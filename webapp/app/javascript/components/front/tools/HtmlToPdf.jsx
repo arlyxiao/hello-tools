@@ -14,6 +14,11 @@ const HtmlToPdf = (props) => {
   }
 
   function handleClick(event) {
+    if (!props.currentUser.username) {
+      alert("Plase sign in first.");
+      return;
+    }
+
     if (isLoading) {
       return;
     }
@@ -38,7 +43,7 @@ const HtmlToPdf = (props) => {
   }
 
   return (
-    <BaseLayout>
+    <BaseLayout {...props}>
       <div className="html-to-pdf container">
         <div className="form d-flex flex-column align-items-center">
           <div className="input-wrap d-flex flex-column justify-content-center align-items-center">
