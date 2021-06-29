@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 
 import Header from "./Header";
+import Footer from "./Footer";
 import "../../styles/front/shared/layout.scss";
 
 const BaseLayout = ({ children, currentUser }) => {
@@ -12,7 +13,11 @@ const BaseLayout = ({ children, currentUser }) => {
     <div className="base-layout">
       <Header currentUser={currentUser} />
 
-      {children}
+      <main>
+        {children}
+      </main>
+
+      <Footer />
     </div>
   );
 };
