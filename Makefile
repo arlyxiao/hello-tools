@@ -23,9 +23,13 @@ restart-all: #: Restart all
 	cd tools-docker \
 	&& docker-compose restart
 
-start-all: #: Start All
+start-all-bg: #: Start all in background
 	cd tools-docker \
 	&& docker-compose up -d
+
+start-all: #: Start all
+	cd tools-docker \
+	&& docker-compose up
 
 stop-all: #: Stop All
 	cd tools-docker \
