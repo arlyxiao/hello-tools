@@ -4,7 +4,6 @@ import BaseLayout from "../layouts/BaseLayout";
 import SearchPanel from "../layouts/SearchPanel";
 import "../../styles/front/topics.scss";
 
-
 const Index = (props) => {
   const topics = props.topics;
   const pagination = props.pagination;
@@ -13,8 +12,8 @@ const Index = (props) => {
     <BaseLayout {...props}>
       <SearchPanel />
 
-      <div className="topics container">
-        <div className="container">
+      <div className="container">
+        <div className="topics">
           <section className="list">
             <ul>
               {topics &&

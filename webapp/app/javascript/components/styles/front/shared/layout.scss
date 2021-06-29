@@ -11,6 +11,10 @@ a:focus
   outline: none;
 }
 
+main {
+  min-height: 70vh;
+}
+
 header {
   display: flex;
   align-items: center;
@@ -58,9 +62,6 @@ header {
   }
 }
 
-main {
-  min-height: 100vh;
-}
 
 section.search-panel {
   display: flex;

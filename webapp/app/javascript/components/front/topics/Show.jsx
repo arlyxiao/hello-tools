@@ -22,8 +22,8 @@ const Show = (props) => {
     <BaseLayout {...props}>
       <SearchPanel />
 
-      <section className="topic" ref={node}>
-        <div className="container">
+      <div className="container">
+        <section className="topic" ref={node}>
           <h4 className="title">{title}</h4>
           <div className="small-text">
             <span className="time">{createdAt}</span>
@@ -38,8 +38,8 @@ const Show = (props) => {
             className="content-body"
             dangerouslySetInnerHTML={{ __html: content }}
           ></div>
-        </div>
-      </section>
+        </section>
+      </div>
     </BaseLayout>
   );
 };

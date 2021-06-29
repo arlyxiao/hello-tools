@@ -43,7 +43,7 @@ const Dashboard = function (props) {
   }
 
   function addRepo() {
-    if (name === '') {
+    if (name === "") {
       return;
     }
 
@@ -75,8 +75,8 @@ const Dashboard = function (props) {
 
   return (
     <BaseLayout {...props}>
-      <div className="repo-page">
-        <div className="container">
+      <div className="container">
+        <div className="repo-page">
           <h5>Github Token</h5>
           <table>
             <tbody>
@@ -146,9 +146,15 @@ const Dashboard = function (props) {
           <table className="repo-list">
             <tbody>
               {repoList &&
-                repoList.reverse().map((name) => (
-                  <RepoRow key={name} name={name} formToken={props.formToken} />
-                ))}
+                repoList
+                  .reverse()
+                  .map((name) => (
+                    <RepoRow
+                      key={name}
+                      name={name}
+                      formToken={props.formToken}
+                    />
+                  ))}
             </tbody>
           </table>
         </div>
