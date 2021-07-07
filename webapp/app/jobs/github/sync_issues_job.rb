@@ -2,8 +2,8 @@ module Github
 
   class SyncIssuesJob < ApplicationJob
     queue_as :default
-  
-    def perform(user:, repo:, page:)
+
+    def perform(user:, repo:, page: 1)
       begin
         sync_on_github_issues(
           user: user,
@@ -89,6 +89,7 @@ module Github
             topic.content = issue['body']
             topic.label_text = issue['labels'].map { |label| label['name'] }.join(', ')
             topic.created_at = issue['created_at']
+            topic.updated_at = Time.now
             topic.save
           end
         end

@@ -3,10 +3,9 @@ class TopicsController < ApplicationController
 
   def index
     begin
-      @topics = Topic.search(
-        query_text: params[:q],
-        page: params[:page]
-      )
+      run_sync_when_page_load(current_user)
+
+      @topics = Topic.search(query_text: params[:q], page: params[:page])
     rescue => e
       @topics = []
       Rails.logger.debug("Topics error: #{e}")

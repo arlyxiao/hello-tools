@@ -39,8 +39,7 @@ class RepositoriesController < ApplicationController
     if params[:name].present?
       Github::SyncIssuesJob.perform_later(
         user: current_user,
-        repo: params[:name],
-        page: 1
+        repo: params[:name]
       )
       render json: {}, status: :ok and return
     end
