@@ -3,7 +3,7 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "8800:8800"
+      - "80:80"
       # - "443:443"
     depends_on:
       - webapp
@@ -25,22 +25,6 @@ services:
     environment:
       POSTGRES_PASSWORD: 'password'
 
-  # webpack:
-  #   build:
-  #     context: ./docker/webapp
-  #     dockerfile: Dockerfile
-  #   command: ./bin/webpack-dev-server
-  #   # command: ./bin/webpack --watch --colors --progress
-  #   volumes:
-  #     - ../webapp:/webapp
-  #     - bundler_gems:/usr/local/bundle
-  #   ports:
-  #     - '3035:3035'
-  #   environment:
-  #     NODE_ENV: development
-  #     RAILS_ENV: development
-  #     WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
-
   redis_db:
     image: redis:latest
     command: redis-server
@@ -54,18 +38,15 @@ services:
       context: ./docker/webapp
       dockerfile: Dockerfile
     command: >
-      bash -c "rm -f tmp/pids/server.pid &&
-               bundle exec rails s -p 3008 -b '0.0.0.0'"
-    # command: >
-    #    bash -c "bundle install &&
-    #             RAILS_ENV=production rails assets:precompile &&
-    #             NODE_ENV=production bin/webpack --config config/webpack/production.js &&
-    #             bundle exec puma -e production -C config/puma.rb"
+       bash -c "bundle install &&
+                RAILS_ENV=production rails assets:precompile &&
+                NODE_ENV=production bin/webpack --config config/webpack/production.js &&
+                bundle exec puma -e production -C config/puma.rb"
+
     environment:
       # SECRET_KEY_BASE: 'Please run RAILS_ENV=production rake secret'
-      # RAILS_ENV: production
-      # NODE_ENV: production
-      WEBPACKER_DEV_SERVER_HOST: webpack
+      RAILS_ENV: production
+      NODE_ENV: production
       REDIS_URL: redis://redis_db:6379/0
 
     volumes:
@@ -75,7 +56,6 @@ services:
       - "3008:3008"
     depends_on:
       - redis_db
-      # - webpack
       - db
 
 volumes:

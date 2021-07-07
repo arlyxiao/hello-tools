@@ -45,7 +45,7 @@ docker
 
 ```
 cd tools-docker
-cp docker-compose.yml.example docker-compose.yml
+cp docker-compose.yml.development docker-compose.yml
 cp docker/nginx/default.conf.example docker/nginx/default.conf
 ```
 

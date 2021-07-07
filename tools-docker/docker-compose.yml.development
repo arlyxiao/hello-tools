@@ -1,0 +1,76 @@
+version: "3.9"
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8800:8800"
+      # - "443:443"
+    depends_on:
+      - webapp
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ../webapp:/webapp:rw
+    networks:
+      default:
+        aliases:
+          - localhost
+
+  db:
+    image: postgres
+    ports:
+      - '5432:5432'
+    command: ["postgres", "-c", "fsync=true", "-c", "full_page_writes=on"]
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: 'password'
+
+  webpack:
+    build:
+      context: ./docker/webapp
+      dockerfile: Dockerfile
+    command: ./bin/webpack-dev-server
+    # command: ./bin/webpack --watch --colors --progress
+    volumes:
+      - ../webapp:/webapp
+      - bundler_gems:/usr/local/bundle
+    ports:
+      - '3035:3035'
+    environment:
+      NODE_ENV: development
+      RAILS_ENV: development
+      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+
+  redis_db:
+    image: redis:latest
+    command: redis-server
+    expose:
+     - "6379"
+    ports:
+      - "5379:6379"
+
+  webapp:
+    build:
+      context: ./docker/webapp
+      dockerfile: Dockerfile
+    command: >
+      bash -c "rm -f tmp/pids/server.pid &&
+               bundle exec rails s -p 3008 -b '0.0.0.0'"
+    environment:
+      RAILS_ENV: development
+      NODE_ENV: development
+      WEBPACKER_DEV_SERVER_HOST: webpack
+      REDIS_URL: redis://redis_db:6379/0
+
+    volumes:
+      - ../webapp:/webapp
+      - bundler_gems:/usr/local/bundle
+    ports:
+      - "3008:3008"
+    depends_on:
+      - redis_db
+      - webpack
+      - db
+
+volumes:
+  bundler_gems:
