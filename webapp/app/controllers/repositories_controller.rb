@@ -7,7 +7,7 @@ class RepositoriesController < ApplicationController
 
   def save_github_token
     begin
-      current_user.github_token = params[:github_token]
+      current_user.github_token = params[:github_token].strip
       current_user.save
 
       head :ok
