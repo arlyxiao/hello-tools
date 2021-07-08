@@ -45,6 +45,7 @@ services:
 
     environment:
       # SECRET_KEY_BASE: 'Please run RAILS_ENV=production rake secret'
+      RAILS_SERVE_STATIC_FILES: 'true'
       RAILS_ENV: production
       NODE_ENV: production
       REDIS_URL: redis://redis_db:6379/0

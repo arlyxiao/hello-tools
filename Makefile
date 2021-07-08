@@ -1,18 +1,28 @@
-restart-webapp: #: Restart webapp only
+prepare_app = 'bundle install \
+	&& rake db:migrate \
+	&& RAILS_ENV=production rails assets:precompile \
+	&& NODE_ENV=production bin/webpack --config config/webpack/production.js'
+
+restart-webapp: #: Restart webapp
 	cd tools-docker \
 	&& docker-compose restart webapp
 
 restart: #: Restart all
-	cd tools-docker \
+	docker exec -ti tools-docker_webapp_1 bash -c $(prepare_app) \
+	&& cd tools-docker \
 	&& docker-compose restart
 
 start: #: Start all
 	cd tools-docker \
-	&& docker-compose up -d
+	&& docker-compose down \
+	&& docker-compose run -d --name tools-docker_webapp_1 webapp \
+	&& docker exec -ti tools-docker_webapp_1 bash -c $(prepare_app) \
+	&& docker-compose down \
+	&& docker-compose up -d --remove-orphan
 
 stop: #: Stop All
 	cd tools-docker \
 	&& docker-compose down
 
-help: #: Show help topics
+help: #: Show help
 	@grep "#:" Makefile* | grep -v "@grep" | sort | sed "s/\([A-Za-z_ -]*\):.*#\(.*\)/$$(tput setaf 3)\1$$(tput sgr0)\2/g"

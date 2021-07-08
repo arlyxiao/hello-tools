@@ -17,7 +17,7 @@ class RepositoriesController < ApplicationController
   end
 
   def create
-    repo = current_user.repos.find_or_initialize_by(name: params[:name])
+    repo = current_user.repos.find_or_initialize_by(name: params[:name].strip)
     if repo.save
       head :created
     else
