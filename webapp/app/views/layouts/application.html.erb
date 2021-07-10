@@ -8,21 +8,12 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application',
-          rel: 'preload',
-          as: 'style',
-          onload: "this.rel='stylesheet'",
-          media: 'all',
-          'data-turbolinks-track': 'reload' %>
-    <link rel="preload"
-          as="style"
-          onload="this.rel='stylesheet'"
-          href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <%= stylesheet_link_tag 'application', rel: 'preload', as: 'style', onload: "this.rel='stylesheet'", media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', rel: 'preload', as: 'style', onload: "this.rel='stylesheet'", media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <%= yield %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', 'data-turbolinks-eval': false %>
-    <script defer src="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
   </body>
 </html>

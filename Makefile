@@ -1,7 +1,8 @@
 prepare_app = 'bundle install \
 	&& rake db:migrate \
+	&& yarn install \
 	&& RAILS_ENV=production rails assets:precompile \
-	&& NODE_ENV=production bin/webpack --config config/webpack/production.js'
+	&& NODE_ENV=production rails webpacker:compile'
 
 restart-webapp: #: Restart webapp
 	cd tools-docker \
