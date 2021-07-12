@@ -1,4 +1,5 @@
-prepare_app = 'bundle install \
+prepare_app = 'rm -rf ../webapp/public/assets/* \
+  && bundle install \
 	&& rake db:migrate \
 	&& yarn install \
 	&& RAILS_ENV=production rails assets:precompile \
