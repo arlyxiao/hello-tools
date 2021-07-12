@@ -34,3 +34,13 @@
     margin-bottom: 1rem;
   }
 }
+
+
+@media (max-width: 640px) {
+  .repo-page {
+
+    table {
+      width: 100%;
+    }
+  }
+}

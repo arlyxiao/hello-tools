@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import consumer from "../../../channels/consumer";
 
+import Spinner from "../../styles/icons/Spinner";
+
 const RepoRow = function (props) {
   const [syncDone, setSyncDone] = useState(true);
   const name = props.name;
@@ -105,8 +107,8 @@ const RepoRow = function (props) {
             className="small btn"
             onClick={() => syncIssues(name)}
           >
-            <span className={`${syncDone ? "hide" : ""}`}>
-              <i className="fas fa-spinner fa-spin"></i>
+            <span className={`d-flex align-items-center ${syncDone ? "hide" : ""}`}>
+              <Spinner />
             </span>
             <span className={`${syncDone ? "text" : "hide"}`}>Sync Issues</span>
           </button>

@@ -1,15 +1,6 @@
+@import "./tiny-bootstrap.scss";
 @import "./widgets.scss";
 
-.container {
-  max-width: 940px;
-  margin: 0 auto;
-}
-
-button:focus,
-a:focus
-{
-  outline: none;
-}
 
 main {
   min-height: 70vh;

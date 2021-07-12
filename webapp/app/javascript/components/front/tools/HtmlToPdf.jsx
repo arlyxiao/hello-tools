@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import BaseLayout from "../layouts/BaseLayout";
 import "../../styles/front/tools.scss";
+import Spinner from "../../styles/icons/Spinner";
 
 const HtmlToPdf = (props) => {
   const nodeServerHost = props.node_server_host;
@@ -61,7 +62,7 @@ const HtmlToPdf = (props) => {
                 HTML To PDF
               </span>
               <span className={`loading ${!isLoading ? "hide" : ""}`}>
-                <i className="fa fa-spinner fa-spin fa-fw"></i>
+                <Spinner />
               </span>
             </button>
 

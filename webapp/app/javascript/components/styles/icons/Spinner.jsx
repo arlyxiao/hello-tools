@@ -1,40 +1,18 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Loading</title>
+import React from "react";
 
-    <style type="text/css">
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-
-      div.loading {
-        display: flex;
-        justify-content: center;
-        margin: 50px 0 0 0;
-      }
-
-      svg.loading {
-        width: 48px;
-        height: 48px;
-        animation: spin 1.2s linear infinite;
-      }
-    </style>
-  </head>
-
-  <body>
-    <div class="loading">
+const Spinner = (props) => {
+  return (
+    <>
       <svg
-        class="loading"
+        className="loading"
         version="1.1"
         id="Capa_1"
         xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        width="48px"
-        height="48px"
+        width="24px"
+        height="24px"
         viewBox="0 0 500 500"
       >
         <g>
@@ -97,6 +75,8 @@
         <g></g>
         <g></g>
       </svg>
-    </div>
-  </body>
-</html>
+    </>
+  );
+};
+
+export default Spinner;

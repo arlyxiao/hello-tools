@@ -3,6 +3,7 @@ import * as React from "react";
 import BaseLayout from "../layouts/BaseLayout";
 import SearchPanel from "../layouts/SearchPanel";
 import "../../styles/front/topics.scss";
+import AngleRight from "../../styles/icons/AngleRight";
 
 const Index = (props) => {
   const topics = props.topics;
@@ -19,7 +20,10 @@ const Index = (props) => {
               {topics &&
                 topics.map((topic) => (
                   <li key={topic.id}>
-                    <div dangerouslySetInnerHTML={{ __html: topic.link }}></div>
+                    <a className="title" href={topic.link}>
+                      <AngleRight />
+                      {topic.title}
+                    </a>
                     <div className="small-text">
                       <span className="time">{topic.created_at}</span>
                     </div>
