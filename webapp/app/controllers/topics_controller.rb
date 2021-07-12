@@ -13,6 +13,8 @@ class TopicsController < ApplicationController
   end
 
   def show
+    run_sync_when_page_load(current_user)
+
     @topic = Topic.find_by(source_id: params[:id])
   end
 end
