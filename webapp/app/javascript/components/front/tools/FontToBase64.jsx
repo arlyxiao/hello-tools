@@ -10,20 +10,25 @@ const FontToBase64 = (props) => {
   const [resultValue, setResultValue] = useState("");
 
   function handleChange(event) {
-    setSourceValue(event.target.value);
+    const inputUrl = event.target.value;
+    if (inputUrl.indexOf('https://') === -1) {
+      return;
+    }
 
-    const errorHandler = function (e) {
+    setSourceValue(inputUrl);
+
+    const errorHandler = function(e) {
       console.info("error: ", e);
       setResultValue("Font URL is incorrect.");
     };
 
-    const fetchFontList = function (url) {
+    const fetchFontList = function(url) {
       return fetch(url).then(function (res) {
         return res.text();
       }, errorHandler);
     };
 
-    const convertFonts = function (fontList) {
+    const convertFonts = function(fontList) {
       const locations = fontList.match(/https:\/\/[^)]+/g);
       const loadedData = locations.map(function (location) {
         return new Promise(function (resolve, reject) {
@@ -48,7 +53,7 @@ const FontToBase64 = (props) => {
       });
     };
 
-    const outputResult = function (fontList) {
+    const outputResult = function(fontList) {
       setResultValue(fontList);
     };
 
