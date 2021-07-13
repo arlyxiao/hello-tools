@@ -1,8 +1,11 @@
 class RepositoriesController < ApplicationController
-  before_action :has_authenticated?
+  before_action :has_authenticated?, except: [:welcome]
 
   def index
     @repo_list = current_user.repos.map { |repo| repo.name }
+  end
+
+  def welcome
   end
 
   def save_github_token

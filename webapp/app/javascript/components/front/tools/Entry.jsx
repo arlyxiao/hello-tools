@@ -13,6 +13,12 @@ const Entry = (props) => {
               <a href="/tools/html-to-pdf">Html To Pdf</a>
             </div>
           </div>
+
+          <div className="card">
+            <div className="card-body">
+              <a href="/tools/font-to-base64">Font To Base64</a>
+            </div>
+          </div>
         </div>
       </div>
     </BaseLayout>

@@ -48,42 +48,44 @@ const Signin = function (props) {
   return (
     <>
       <BaseLayout {...props}>
-        <div className="form d-flex flex-column align-items-center">
-          <div className="error-message">{formErrorMessage}</div>
-          <div className="input-wrap d-flex flex-column justify-content-center align-items-center">
-            <div className="after-input">
-              <div className="input-hint hide">Email</div>
-              <input
-                className="email-input"
-                type="email"
-                placeholder="Email"
-                name="email"
-                data-name="email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
+        <div className="signin-page">
+          <div className="form d-flex flex-column align-items-center">
+            <div className="error-message">{formErrorMessage}</div>
+            <div className="input-wrap d-flex flex-column justify-content-center align-items-center">
+              <div className="after-input">
+                <div className="input-hint hide">Email</div>
+                <input
+                  className="email-input"
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  data-name="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="input-wrap d-flex flex-column justify-content-center align-items-center">
-            <div className="after-input">
-              <div className="input-hint hide">Password</div>
-              <input
-                className="password-input"
-                type="password"
-                placeholder="Password"
-                name="password"
-                data-name="password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
+            <div className="input-wrap d-flex flex-column justify-content-center align-items-center">
+              <div className="after-input">
+                <div className="input-hint hide">Password</div>
+                <input
+                  className="password-input"
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  data-name="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
             </div>
-          </div>
 
-          <button className="btn" onClick={() => handleSignin()}>
-            <span className="hide">
-              <i className="fas fa-spinner fa-spin"></i>
-            </span>
-            <span>Login</span>
-          </button>
+            <button className="btn" onClick={() => handleSignin()}>
+              <span className="hide">
+                <i className="fas fa-spinner fa-spin"></i>
+              </span>
+              <span>Login</span>
+            </button>
+          </div>
         </div>
       </BaseLayout>
     </>

@@ -10,7 +10,7 @@ const NotFound = (props) => {
         <div className="error-page">
           <div className="card">
             <div className="card-body d-flex flex-column justify-content-center align-items-center">
-              <h4>The page is sleeping.</h4>
+              <div className="description">The page is sleeping.</div>
               <a href="/">Back to Home</a>
             </div>
           </div>

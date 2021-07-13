@@ -10,7 +10,7 @@ const Authenticated = (props) => {
         <div className="form">
           <div className="card">
             <div className="card-body d-flex flex-column justify-content-center align-items-center">
-              <h5>Authenticated?</h5>
+              <div className="description">Authenticated?</div>
             </div>
           </div>
         </div>

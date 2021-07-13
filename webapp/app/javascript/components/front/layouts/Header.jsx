@@ -14,7 +14,7 @@ const Header = (props) => {
           </li>
 
           <li className="">
-            <a href="/repositories">Repo</a>
+            <a href="/repositories/welcome">Repo</a>
           </li>
 
           <li className="">

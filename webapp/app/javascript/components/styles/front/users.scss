@@ -1,19 +1,26 @@
 @import "./shared/layout.scss";
 
-.form {
-  max-width: 300px;
-  margin: 50px auto 0 auto;
+.signin-page,
+.signup-page {
+  .form {
+    max-width: 300px;
+    margin: 50px auto 0 auto;
 
-  .input-wrap {
-    margin: 0 0 25px 0;
+    .input-wrap {
+      margin: 0 0 25px 0;
+    }
   }
 }
 
 .repo-page {
-  margin: 35px 0 0 0;
+  margin: 50px 0 0 0;
 
   h5 {
     margin-bottom: 1rem;
+  }
+
+  .card {
+    margin: 0 0 20px 0;
   }
 
   .repo-list-caption {
@@ -35,10 +42,8 @@
   }
 }
 
-
 @media (max-width: 640px) {
   .repo-page {
-
     table {
       width: 100%;
     }
