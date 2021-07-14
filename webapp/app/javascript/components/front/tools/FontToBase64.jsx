@@ -40,7 +40,7 @@ const FontToBase64 = (props) => {
               let reader = new FileReader();
               reader.addEventListener("load", function () {
                 fontList = fontList.replace(location, this.result);
-                resolve([location, this.result]);
+                resolve();
               });
               reader.readAsDataURL(blob);
             })
@@ -48,7 +48,7 @@ const FontToBase64 = (props) => {
         });
       });
 
-      return Promise.all(loadedData).then(function () {
+      return Promise.all(loadedData).then(function() {
         return fontList;
       });
     };
