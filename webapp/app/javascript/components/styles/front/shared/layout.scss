@@ -2,8 +2,15 @@
 @import "./widgets.scss";
 
 
+.base-layout {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
 main {
-  min-height: 70vh;
+  flex: 1;
 }
 
 header {
