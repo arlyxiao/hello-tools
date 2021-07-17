@@ -1,6 +1,6 @@
 prepare_app = 'cd ../nodeapp \
-  && npm install && cd server && forever server.js \
-  && cd ../../webapp \
+  && npm install \
+  && cd ../webapp \
   && rm -rf ../webapp/public/assets/* \
   && bundle install \
 	&& rake db:migrate \
@@ -15,7 +15,8 @@ restart-webapp: #: Restart webapp
 restart: #: Restart all
 	docker exec -ti tools-docker_webapp_1 bash -c $(prepare_app) \
 	&& cd tools-docker \
-	&& docker-compose restart
+	&& docker-compose restart \
+	&& cd nodeapp/server && forever server.js
 
 start: #: Start all
 	cd tools-docker \
