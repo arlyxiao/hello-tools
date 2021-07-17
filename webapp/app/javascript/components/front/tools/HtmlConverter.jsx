@@ -52,17 +52,16 @@ const HtmlConverter = (props) => {
       .finally(() => setIsLoading(false));
   }
 
-  function handlePNG(event) {
+  function handleImage(event) {
     const inputValue = prepareInputValue();
     if (!inputValue) {
       return;
     }
 
     fetch(`${nodeServerHost}/html-to-png?url=${inputValue}`)
-      .then((res) => res.blob())
-      .then((blob) => {
-        const file = window.URL.createObjectURL(blob);
-        setResult(file);
+      .then((res) => res.json())
+      .then((result) => {
+        setResult(`${nodeServerHost}/${result.url}`);
       })
       .finally(() => setIsLoading(false));
   }
@@ -91,9 +90,9 @@ const HtmlConverter = (props) => {
                 </span>
               </button>
 
-              <button className="btn" type="button" onClick={handlePNG}>
+              <button className="btn" type="button" onClick={handleImage}>
                 <span className={`text ${isLoading ? "hide" : ""}`}>
-                  HTML To PNG
+                  HTML To Image
                 </span>
                 <span className={`loading ${!isLoading ? "hide" : ""}`}>
                   <Spinner />
