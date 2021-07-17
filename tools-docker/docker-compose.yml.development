@@ -10,6 +10,7 @@ services:
     volumes:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ../webapp:/webapp:rw
+      - ../nodeapp:/nodeapp:rw
     networks:
       default:
         aliases:

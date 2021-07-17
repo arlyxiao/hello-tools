@@ -40,8 +40,8 @@ server {
     break;
   }
 
-  location /node-data {
-    root /replace-data-path-here;
+  location ^~ /node-data {
+    alias /nodeapp/server/public;
   }
 
   location /node-api {

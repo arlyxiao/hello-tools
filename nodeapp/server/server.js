@@ -54,7 +54,7 @@ app.get("/html-to-pdf", async (req, res) => {
   }
 });
 
-app.get("/html-to-png", async (req, res) => {
+app.get("/html-to-image", async (req, res) => {
   try {
     const browser = await puppeteer.launch({
       headless: true,
@@ -74,7 +74,7 @@ app.get("/html-to-png", async (req, res) => {
       height: viewportHeight
     });
 
-    const filename = `${req.session.id}_${Date.now()}.png`;
+    const filename = `${req.session.id}_${Date.now()}.jpg`;
     const fullpath = `./public/static/temp/${filename}`;
     const dataBuffer = await page.screenshot({
       path: fullpath,
@@ -83,7 +83,7 @@ app.get("/html-to-png", async (req, res) => {
     await browser.close();
 
     const image = imagePool.ingestImage(dataBuffer);
-    const resultName = `${req.session.id}_${Date.now()}_1.png`;
+    const resultName = `${req.session.id}_${Date.now()}_1.jpg`;
     const resultPath = `./public/static/temp/${resultName}`;
 
     await image.encode({
