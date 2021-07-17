@@ -15,8 +15,7 @@ restart-webapp: #: Restart webapp
 restart: #: Restart all
 	docker exec -ti tools-docker_webapp_1 bash -c $(prepare_app) \
 	&& cd tools-docker \
-	&& docker-compose restart \
-	&& cd ../nodeapp/server && forever server.js
+	&& docker-compose restart
 
 start: #: Start all
 	cd tools-docker \
