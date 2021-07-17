@@ -1,4 +1,8 @@
-prepare_app = 'rm -rf ../webapp/public/assets/* \
+prepare_app = 'cd nodeapp \
+  && npm install \
+	&& forever restart server/server.js \
+  && cd ../webapp \
+  && rm -rf ../webapp/public/assets/* \
   && bundle install \
 	&& rake db:migrate \
 	&& yarn install \
