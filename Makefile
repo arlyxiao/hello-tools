@@ -1,6 +1,6 @@
 prepare_app = 'cd ../nodeapp \
   && npm install \
-	&& rm -rf public/static/temp/* \
+	&& rm -rf server/public/static/temp/* \
   && cd ../webapp \
   && rm -rf public/assets/* \
   && bundle install \
