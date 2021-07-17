@@ -6,6 +6,7 @@ import Spinner from "../../styles/icons/Spinner";
 
 const HtmlConverter = (props) => {
   const nodeServerHost = props.node_server_host;
+  const nodeDataPath = props.node_data_path;
   const [inputValue, setInputValue] = useState("https://douban.com");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -61,7 +62,7 @@ const HtmlConverter = (props) => {
     fetch(`${nodeServerHost}/html-to-png?url=${inputValue}`)
       .then((res) => res.json())
       .then((result) => {
-        setResult(`${nodeServerHost}/${result.url}`);
+        setResult(`${nodeDataPath}${result.url}`);
       })
       .finally(() => setIsLoading(false));
   }

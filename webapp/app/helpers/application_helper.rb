@@ -16,7 +16,8 @@ module ApplicationHelper
       currentUser: {
         username: current_user&.username
       },
-      node_server_host: ENV['NODE_SERVER_HOST']
+      node_server_host: ENV['NODE_SERVER_HOST'],
+      node_data_path: ENV['NODE_DATA_PATH']
     })
     react_component(component_name, attributes)
   end

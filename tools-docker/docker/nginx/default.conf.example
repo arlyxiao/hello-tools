@@ -40,6 +40,10 @@ server {
     break;
   }
 
+  location /node-data {
+    root /replace-data-path-here;
+  }
+
   location /node-api {
     rewrite ^/node-api/(.*)$ /$1 break;
 
