@@ -1,7 +1,8 @@
 prepare_app = 'cd ../nodeapp \
   && npm install \
+	&& rm -rf public/static/temp/* \
   && cd ../webapp \
-  && rm -rf ../webapp/public/assets/* \
+  && rm -rf public/assets/* \
   && bundle install \
 	&& rake db:migrate \
 	&& yarn install \
