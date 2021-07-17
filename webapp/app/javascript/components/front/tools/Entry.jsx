@@ -10,7 +10,7 @@ const Entry = (props) => {
         <div className="entry-page">
           <div className="card">
             <div className="card-body">
-              <a href="/tools/html-to-pdf">Html To Pdf</a>
+              <a href="/tools/html-converter">Html Converter</a>
             </div>
           </div>
 

@@ -2,7 +2,7 @@ class ToolsController < ApplicationController
   def index
   end
 
-  def html_to_pdf
+  def html_converter
   end
 
   def font_to_base64

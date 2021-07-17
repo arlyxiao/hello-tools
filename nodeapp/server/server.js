@@ -51,4 +51,32 @@ app.get("/html-to-pdf", async (req, res) => {
   }
 });
 
+app.get("/html-to-png", async (req, res) => {
+  try {
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+   })
+    const page = await browser.newPage();
+    await page.goto(req.query.url, {
+      waitUntil: "networkidle2",
+    });
+    const dataBuffer = await page.screenshot({
+      path: `./temp/${req.session.id}_${Date.now()}.png`,
+      fullPage: true,
+    });
+
+    res.writeHead(200, {
+      "Content-Type": "image/png",
+      "Content-Length": dataBuffer.length,
+    });
+    res.end(dataBuffer);
+
+    await browser.close();
+  } catch (execption) {
+    console.log(execption.message);
+    // res.send(execption.message)
+  }
+});
+
 app.listen(4500);

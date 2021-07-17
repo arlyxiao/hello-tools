@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout";
 import "../../styles/front/tools.scss";
 import Spinner from "../../styles/icons/Spinner";
 
-const HtmlToPdf = (props) => {
+const HtmlConverter = (props) => {
   const nodeServerHost = props.node_server_host;
   const [inputValue, setInputValue] = useState("https://douban.com");
   const [result, setResult] = useState("");
@@ -14,7 +14,7 @@ const HtmlToPdf = (props) => {
     setInputValue(event.target.value);
   }
 
-  function handleClick(event) {
+  function handlePDF(event) {
     if (!props.currentUser.username) {
       alert("Plase sign in first.");
       return;
@@ -43,10 +43,39 @@ const HtmlToPdf = (props) => {
       .finally(() => setIsLoading(false));
   }
 
+  function handlePNG(event) {
+    if (!props.currentUser.username) {
+      alert("Plase sign in first.");
+      return;
+    }
+
+    if (isLoading) {
+      return;
+    }
+
+    if (
+      !inputValue.startsWith("http://") &&
+      !inputValue.startsWith("https://")
+    ) {
+      return;
+    }
+
+    setResult(`/static/loading.html`);
+    setIsLoading(true);
+
+    fetch(`${nodeServerHost}/html-to-png?url=${inputValue}`)
+      .then((res) => res.blob())
+      .then((blob) => {
+        const file = window.URL.createObjectURL(blob);
+        setResult(file);
+      })
+      .finally(() => setIsLoading(false));
+  }
+
   return (
     <BaseLayout {...props}>
       <div className="container">
-        <div className="html-to-pdf">
+        <div className="html-converter">
           <div className="form d-flex flex-column align-items-center">
             <div className="input-wrap d-flex flex-column justify-content-center align-items-center">
               <input
@@ -57,14 +86,25 @@ const HtmlToPdf = (props) => {
               />
             </div>
 
-            <button className="btn" type="button" onClick={handleClick}>
-              <span className={`text ${isLoading ? "hide" : ""}`}>
-                HTML To PDF
-              </span>
-              <span className={`loading ${!isLoading ? "hide" : ""}`}>
-                <Spinner />
-              </span>
-            </button>
+            <div className="button-groups d-flex">
+              <button className="btn" type="button" onClick={handlePDF}>
+                <span className={`text ${isLoading ? "hide" : ""}`}>
+                  HTML To PDF
+                </span>
+                <span className={`loading ${!isLoading ? "hide" : ""}`}>
+                  <Spinner />
+                </span>
+              </button>
+
+              <button className="btn" type="button" onClick={handlePNG}>
+                <span className={`text ${isLoading ? "hide" : ""}`}>
+                  HTML To PNG
+                </span>
+                <span className={`loading ${!isLoading ? "hide" : ""}`}>
+                  <Spinner />
+                </span>
+              </button>
+            </div>
 
             <iframe src={result}></iframe>
           </div>
@@ -74,4 +114,4 @@ const HtmlToPdf = (props) => {
   );
 };
 
-export default HtmlToPdf;
+export default HtmlConverter;
