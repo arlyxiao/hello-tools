@@ -55,12 +55,22 @@ app.get("/html-to-png", async (req, res) => {
   try {
     const browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      defaultViewport: null,
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--start-maximized']
    })
     const page = await browser.newPage();
     await page.goto(req.query.url, {
       waitUntil: "networkidle2",
     });
+
+    const pageWidth = 1440
+    const viewportHeight = 800
+
+    await page.setViewport({
+      width: pageWidth,
+      height: viewportHeight
+    });
+
     const dataBuffer = await page.screenshot({
       path: `./temp/${req.session.id}_${Date.now()}.png`,
       fullPage: true,

@@ -14,7 +14,7 @@ const HtmlConverter = (props) => {
     setInputValue(event.target.value);
   }
 
-  function handlePDF(event) {
+  function prepareInputValue() {
     if (!props.currentUser.username) {
       alert("Plase sign in first.");
       return;
@@ -33,6 +33,15 @@ const HtmlConverter = (props) => {
 
     setResult(`/static/loading.html`);
     setIsLoading(true);
+
+    return inputValue;
+  }
+
+  function handlePDF(event) {
+    const inputValue = prepareInputValue();
+    if (!inputValue) {
+      return;
+    }
 
     fetch(`${nodeServerHost}/html-to-pdf?url=${inputValue}`)
       .then((res) => res.blob())
@@ -44,24 +53,10 @@ const HtmlConverter = (props) => {
   }
 
   function handlePNG(event) {
-    if (!props.currentUser.username) {
-      alert("Plase sign in first.");
+    const inputValue = prepareInputValue();
+    if (!inputValue) {
       return;
     }
-
-    if (isLoading) {
-      return;
-    }
-
-    if (
-      !inputValue.startsWith("http://") &&
-      !inputValue.startsWith("https://")
-    ) {
-      return;
-    }
-
-    setResult(`/static/loading.html`);
-    setIsLoading(true);
 
     fetch(`${nodeServerHost}/html-to-png?url=${inputValue}`)
       .then((res) => res.blob())
@@ -106,8 +101,10 @@ const HtmlConverter = (props) => {
               </button>
             </div>
 
-            <iframe src={result}></iframe>
           </div>
+
+          <iframe src={result}></iframe>
+
         </div>
       </div>
     </BaseLayout>
