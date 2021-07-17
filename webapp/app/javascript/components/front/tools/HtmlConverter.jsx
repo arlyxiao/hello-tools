@@ -62,7 +62,7 @@ const HtmlConverter = (props) => {
     fetch(`${nodeServerHost}/html-to-image?url=${inputValue}`)
       .then((res) => res.json())
       .then((result) => {
-        setResult(`${nodeDataPath}${result.url}`);
+        setResult(`${nodeDataPath}${result.path}`);
       })
       .finally(() => setIsLoading(false));
   }

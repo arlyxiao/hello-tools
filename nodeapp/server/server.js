@@ -5,7 +5,6 @@ import session from 'express-session';
 import { ImagePool } from '@squoosh/lib';
 import { writeFileSync } from 'fs';
 
-const imagePool = new ImagePool();
 const app = express();
 
 app.use(cors());
@@ -74,28 +73,27 @@ app.get("/html-to-image", async (req, res) => {
       height: viewportHeight
     });
 
-    const filename = `${req.session.id}_${Date.now()}.jpg`;
-    const fullpath = `./public/static/temp/${filename}`;
+    const prefixPath = './public/static/temp';
+    const filename = `${req.session.id}_${Date.now()}.png`;
+    const fullpath = `${prefixPath}/${filename}`;
     const dataBuffer = await page.screenshot({
       path: fullpath,
       fullPage: true,
     });
     await browser.close();
 
-    const image = imagePool.ingestImage(dataBuffer);
-    const resultName = `${req.session.id}_${Date.now()}_1.jpg`;
-    const resultPath = `./public/static/temp/${resultName}`;
-
+    const imagePool = new ImagePool();
+    const image = imagePool.ingestImage(fullpath);
     await image.encode({
       mozjpeg: {
       }
     });
     const { binary } = await image.encodedWith.mozjpeg;
-    await writeFileSync(resultPath, binary);
+    await writeFileSync(fullpath, binary);
     await imagePool.close();
 
     res.json({
-      url: `/static/temp/${resultName}`
+      path: `/static/temp/${filename}`
     });
     res.end();
   } catch (execption) {
