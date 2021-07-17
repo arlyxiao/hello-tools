@@ -1,4 +1,4 @@
-prepare_app = 'cd nodeapp \
+prepare_app = 'cd ../nodeapp \
   && npm install \
 	&& forever restart server/server.js \
   && cd ../webapp \
