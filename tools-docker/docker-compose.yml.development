@@ -65,6 +65,7 @@ services:
 
     volumes:
       - ../webapp:/webapp
+      - ../nodeapp:/nodeapp
       - bundler_gems:/usr/local/bundle
     ports:
       - "3008:3008"

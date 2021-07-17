@@ -1,4 +1,6 @@
-prepare_app = 'cd ../webapp \
+prepare_app = 'cd ../nodeapp \
+  && npm install && cd server && forever server.js \
+  && cd ../../webapp \
   && rm -rf ../webapp/public/assets/* \
   && bundle install \
 	&& rake db:migrate \
