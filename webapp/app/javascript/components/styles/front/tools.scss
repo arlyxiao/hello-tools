@@ -69,3 +69,21 @@
     }
   }
 }
+
+
+@media (max-width: 480px) {
+  .html-converter {
+    .form {
+      .button-groups {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        button {
+          margin: 10px 0 10px 0;
+        }
+      }
+    }
+  }
+}
