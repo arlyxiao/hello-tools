@@ -5,7 +5,7 @@ import "../../styles/front/errors.scss";
 
 const InternalServerError = (props) => {
   return (
-    <BaseLayout>
+    <BaseLayout {...props}>
       <div className="container">
         <div className="error-page">
           <div className="card">
