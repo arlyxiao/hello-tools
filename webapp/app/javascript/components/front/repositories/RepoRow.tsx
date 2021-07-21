@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { RootStateOrAny, useSelector, useDispatch } from "react-redux";
 import consumer from "../../../channels/consumer";
 
 import Spinner from "../../styles/icons/Spinner";
@@ -9,7 +9,7 @@ const RepoRow = function (props) {
   const name = props.name;
 
   const dispatch = useDispatch();
-  let repoList = useSelector((state) => state.repoList);
+  let repoList = useSelector((state: RootStateOrAny) => state.repoList);
 
   React.useEffect(() => {
     consumer.subscriptions.create("SyncGithubIssuesChannel", {

@@ -30,15 +30,15 @@ const FontToBase64 = (props) => {
 
     const convertFonts = function(fontList) {
       const locations = fontList.match(/https:\/\/[^)]+/g);
-      const loadedData = locations.map(function (location) {
-        return new Promise(function (resolve, reject) {
+      const loadedData = locations.map(function(location) {
+        return new Promise<void>(function(resolve, reject) {
           fetch(location)
             .then(function (res) {
               return res.blob();
             })
             .then(function (blob) {
               let reader = new FileReader();
-              reader.addEventListener("load", function () {
+              reader.addEventListener("load", function() {
                 fontList = fontList.replace(location, this.result);
                 resolve();
               });
@@ -48,7 +48,7 @@ const FontToBase64 = (props) => {
         });
       });
 
-      return Promise.all(loadedData).then(function() {
+      return Promise.all(loadedData).then(() => {
         return fontList;
       });
     };
